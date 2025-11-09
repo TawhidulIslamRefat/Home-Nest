@@ -41,7 +41,7 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="flex items-end justify-center gap-2">
-            <a className="text-2xl font-semibold bg-linear-to-r to-[orange] from-[#FF5A3C] bg-clip-text text-transparent">HomeNest </a>
+            <a className="text-2xl font-semibold bg-linear-to-r to-[orange] from-[#FF5A3C] bg-clip-text text-transparent">HomeNest <span className="text-[17px] font-medium text-black">- A Real Estate Listing Portal</span> </a>
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
