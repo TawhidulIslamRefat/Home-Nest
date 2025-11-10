@@ -1,10 +1,13 @@
 import React from "react";
+import Lottie from "lottie-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import image from "../../assets/21.png";
+import houseAnimation from "../../../public/Home.json";
+import houseAnimation1 from "../../../public/City Building Construction.json";
+import houseAnimation2 from "../../../public/City Skyline Building.json";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { AiFillHome } from "react-icons/ai";
 
@@ -28,7 +31,6 @@ const Banner = () => {
           }}
           className="rounded-xl"
         >
-          {/* Slider 1 */}
 
           <SwiperSlide>
             <div className="flex items-center justify-around">
@@ -50,11 +52,11 @@ const Banner = () => {
                   FIND NOW
                 </button>
               </div>
-              <div>
-                <img src={image} alt="banner image" />
+              <div className="w-[1000px]">
+                <Lottie animationData={houseAnimation} loop={true} />
               </div>
             </div>
-            {/* slider 2 */}
+            
           </SwiperSlide>
           <SwiperSlide>
             <div className="flex flex-row-reverse items-center justify-around">
@@ -79,12 +81,12 @@ const Banner = () => {
                   Buy Now
                 </button>
               </div>
-              <div>
-                <img src={image} alt="banner image" />
+              <div className="w-[700px]">
+                <Lottie animationData={houseAnimation1} loop={true} />
               </div>
             </div>
           </SwiperSlide>
-          {/* slider 3 */}
+         
           <SwiperSlide>
             <div className="flex items-center justify-around">
               <div className="ml-10">
@@ -98,7 +100,8 @@ const Banner = () => {
                   Safe, secure, and verified properties.
                 </h1>
                 <p className="text-xl font-medium border-l border-gray-400 pl-4 text-gray-700 mb-5 leading-9">
-                  Create a warm space where your family grows, smiles, and stays <br />
+                  Create a warm space where your family grows, smiles, and stays{" "}
+                  <br />
                   close. Let’s find that place together.
                 </p>
                 <button className="bg-[#FF5A3C] text-white text-[18px] font-normal py-3 px-5 rounded-sm ">
@@ -108,8 +111,8 @@ const Banner = () => {
                   RENT NOW
                 </button>
               </div>
-              <div>
-                <img src={image} alt="banner image" />
+              <div className="w-[1000px]">
+                <Lottie animationData={houseAnimation2} loop={true} />
               </div>
             </div>
           </SwiperSlide>
