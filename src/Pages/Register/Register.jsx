@@ -14,9 +14,26 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         setUser(user);
-        alert("Register Successful!", {
-          onClose: () => navigate(location.state?.from || "/"),
-        });
+        
+        const newUser ={
+          name:user.displayName,
+          email:user.email,
+          image:user.photoURL,
+           createAt:new Date()
+        };
+
+      fetch("http://localhost:3000/users",{
+            method:"POST",
+            headers:{
+              "content-type":"application/json"
+            },
+            body:JSON.stringify(newUser),
+          })
+          .then((res)=> res.json())
+          .then(()=>{
+            alert("Register Successful!");
+          navigate("/");
+          });
       })
       .catch((error) => {
         alert(error.message);
@@ -55,9 +72,27 @@ const Register = () => {
             photoURL: photo,
           });
 
-          alert("Register Successful!", {
-            onClose: () => navigate("/"),
-          });
+          const userInfo = {
+            Name:name,
+            email:email,
+            photo:photo,
+            createAt:new Date()
+          };
+
+          fetch("http://localhost:3000/users",{
+            method:"POST",
+            headers:{
+              "content-type":"application/json"
+            },
+            body:JSON.stringify(userInfo),
+          })
+          .then((res)=> res.json())
+          .then(()=>{
+            alert("Register Successful!");
+          navigate("/");
+          })
+
+         
         });
       })
       .catch((error) => {

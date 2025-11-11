@@ -11,23 +11,52 @@ import Register from "../Pages/Register/Register";
 import UpdateProperty from "../Pages/UpdateProperty/UpdateProperty";
 import ErrorPage from "../Components/Error/ErrorPage";
 import ForgetPassword from "../Pages/ForgetPassword/ForgetPassword";
+import PrivateRoute from "./PriveteRoute/PriveteRoute";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
-    errorElement:<ErrorPage></ErrorPage>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
-      { index:true, element: <Home></Home> },
-      {path:"/all-properties", Component:AllProperties},
-      {path:"/add-property", Component:AddProperty},
-      {path:"/my-property", Component:MyProperties},
-      {path:"/properties/:id", Component:PropertyDetails},
-      {path:"/my-ratings", Component:MyRatings},
-      {path:"/properties/:id/edit", Component:UpdateProperty},
-      {path:"/forget-pass", Component:ForgetPassword},
-      {path:"/login", Component:Login},
-      {path:"/register", Component:Register},
+      { index: true, element: <Home></Home> },
+      { path: "/all-properties", Component: AllProperties },
+      {
+        path: "/add-property",
+        element: (
+          <PrivateRoute>
+            <AddProperty></AddProperty>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-property",
+        element: (
+          <PrivateRoute>
+            <MyProperties></MyProperties>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/properties/:id",
+        element: (
+          <PrivateRoute>
+            <PropertyDetails></PropertyDetails>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-ratings",
+        element: (
+          <PrivateRoute>
+            <MyRatings></MyRatings>
+          </PrivateRoute>
+        ),
+      },
+      { path: "/properties/:id/edit", Component: UpdateProperty },
+      { path: "/forget-pass", Component: ForgetPassword },
+      { path: "/login", Component: Login },
+      { path: "/register", Component: Register },
     ],
   },
 ]);

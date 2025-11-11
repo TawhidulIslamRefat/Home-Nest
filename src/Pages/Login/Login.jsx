@@ -16,17 +16,25 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         setUser(user);
-        console.log(user);
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Login Successful",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        // toast.success("Login Successful!", {
-        //   onClose: () => navigate(`${location.state ? location.state : "/"}`),
-        // });
+        const newUser ={
+          name:user.displayName,
+          email:user.email,
+          image:user.photoURL,
+           createAt:new Date()
+        };
+
+      fetch("http://localhost:3000/users",{
+            method:"POST",
+            headers:{
+              "content-type":"application/json"
+            },
+            body:JSON.stringify(newUser),
+          })
+          .then((res)=> res.json())
+          .then(()=>{
+            alert("Register Successful!");
+          navigate("/");
+          });
       })
       .catch((error) => {
         Swal.fire({

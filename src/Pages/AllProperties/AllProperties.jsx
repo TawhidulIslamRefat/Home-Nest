@@ -3,6 +3,7 @@ import AllPropertiesCard from "../../Components/AllPropertiesCard/AllPropertiesC
 import { useEffect, useState } from "react";
 import Lottie from "lottie-react";
 import search from "../../../public/Searching.json";
+import { Link } from "react-router";
 
 const AllProperties = () => {
   const [properties, setProperties] = useState([]);
@@ -31,10 +32,11 @@ const AllProperties = () => {
           </h2>
         </div>
 
-          <div></div>
+          
         {properties.length === 0 ? (<>
         <div className="w-[800px] flex flex-col justify-center items-center mx-auto">
            <Lottie animationData={search} loop={true} />
+           <Link to='/'  className="btn bg-[#FF5A3C] text-white px-10 py-5">Go Back</Link>
         </div>
         <h1 className="text-2xl font-semibold text-center mb-20 mt-10 text-gray-600">No Properties Found.Try different search keyword</h1>
           </>

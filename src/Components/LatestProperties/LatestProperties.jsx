@@ -1,9 +1,17 @@
-import React, { use } from "react";
+import { useEffect, useState } from "react";
 import PropertyCard from "../PropertyCard/PropertyCard";
 
-const LatestProperties = ({ latestPropertiesPromise }) => {
-  const properties = use(latestPropertiesPromise);
-  console.log(properties);
+const LatestProperties = () => {
+
+  const [properties,setProperties] = useState([]);
+
+
+  useEffect(()=>{
+    fetch("http://localhost:3000/latest-properties")
+    .then((res)=> res.json())
+    .then((data)=>setProperties(data))
+  },[])
+  
   return (
     <div className="w-9/12 mx-auto">
       <div className="text-center my-20">

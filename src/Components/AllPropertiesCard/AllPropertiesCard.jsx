@@ -9,7 +9,6 @@ const AllPropertiesCard = ({ property }) => {
     category,
     price,
     location,
-    description,
     image,
     postedBy,
   } = property;
@@ -20,7 +19,7 @@ const AllPropertiesCard = ({ property }) => {
           <img
             src={image}
             alt={propertyName}
-            className="w-full h-70 object-cover"
+            className="w-100 h-70 object-cover"
           />
           <span
             className={`absolute top-3 left-3 text-xs px-4 py-1.5 rounded-sm text-white text-[16px] font-medium ${
@@ -38,9 +37,6 @@ const AllPropertiesCard = ({ property }) => {
           <h2 className="text-2xl font-semibold text-[#1f1f1f]">
             {propertyName}
           </h2>
-          <p className="text-gray-500 text-[15px] leading-6 font-medium">
-            {description?.slice(0, 60)}...
-          </p>
           <div className="flex items-center justify-between gap-2 text-gray-600 text-sm font-medium">
             <div className="flex items-center gap-2 text-gray-600 text-sm font-medium">
               <FaLocationDot className="text-[#FF5A3C]" />

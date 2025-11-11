@@ -6,9 +6,6 @@ import ConsultSection from "../../Components/Consult/Consult";
 import PropertyCard from "../../Components/LatestProperties/LatestProperties";
 import LatestProperties from "../../Components/LatestProperties/LatestProperties";
 
-const latestPropertiesPromise = fetch(
-  "http://localhost:3000/latest-properties"
-).then((res) => res.json());
 
 
 const Home = () => {
@@ -22,7 +19,6 @@ const Home = () => {
       </section>
       <section>
         <LatestProperties
-          latestPropertiesPromise={latestPropertiesPromise}
         ></LatestProperties>
       </section>
       <section>
