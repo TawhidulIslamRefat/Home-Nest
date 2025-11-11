@@ -20,7 +20,7 @@ const AllPropertiesCard = ({ property }) => {
           <img
             src={image}
             alt={propertyName}
-            className="w-full h-80 object-cover"
+            className="w-full h-70 object-cover"
           />
           <span
             className={`absolute top-3 left-3 text-xs px-4 py-1.5 rounded-sm text-white text-[16px] font-medium ${

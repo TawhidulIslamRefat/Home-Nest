@@ -4,7 +4,6 @@ import {
   FaArrowAltCircleRight,
   FaSearch,
 } from "react-icons/fa";
-import image from "../../assets/122224.png";
 import image1 from "../../assets/Image 11.png";
 import image2 from "../../assets/Image 123.png";
 import image3 from "../../assets/Image 44.png";
@@ -13,9 +12,11 @@ const SecondBanner = ({setSearchText,setSort}) => {
 
     const handleSearch =()=>{
         setSearchText(inputText);
+        setInputText("")
     }
   return (
-    <div className="bg-[#F8F7F7] relative">
+    <div className="bg-[#F8F7F7] relative py-10"
+    >
       <div className="w-10/12 mx-auto grid lg:grid-cols-2 items-center gap-10 py-15">
         <div className="space-y-6">
           <h1 className="text-5xl font-bold leading-tight">
@@ -27,7 +28,7 @@ const SecondBanner = ({setSearchText,setSort}) => {
             Every property is chosen with care to bring you peace and happiness.
           </p>
 
-          <div className="shadow-lg p-5 rounded-xl bg-white space-y-3">
+          <div className="shadow-lg p-5 rounded-xl bg-white space-y-3 z-100">
             <div className="flex gap-3 justify-center">
             </div>
             <div className="flex items-center gap-3">
@@ -73,7 +74,6 @@ const SecondBanner = ({setSearchText,setSort}) => {
           />
         </div>
       </div>
-      <img src={image} alt="" className=" " />
     </div>
   );
 };

@@ -19,7 +19,7 @@ const router = createBrowserRouter([
     errorElement:<ErrorPage></ErrorPage>,
     children: [
       { index:true, element: <Home></Home> },
-      {path:"/all-properties",loader:()=> fetch("http://localhost:3000/properties"), Component:AllProperties},
+      {path:"/all-properties", Component:AllProperties},
       {path:"/add-property", Component:AddProperty},
       {path:"/my-property", Component:MyProperties},
       {path:"/properties/:id", Component:PropertyDetails},

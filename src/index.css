@@ -21,6 +21,14 @@
   font-style: normal;
 }
 
+
+.active{
+  color: orangered;
+  border-bottom: 2px solid orangered ;
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
 /* From Uiverse.io by Shoh2008 */ 
 .loader {
   position: relative;

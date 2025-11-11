@@ -9,7 +9,7 @@ const PropertyCard = ({property}) => {
         <div className=' rounded-lg shadow-2xl bg-white hover:shadow-2xl transition overflow-hidden'>
          <div className='relative'>
             <img src={image} alt={propertyName} className='w-full h-80 object-cover' />
-            <span className={`absolute top-3 left-3 text-xs px-4 py-1.5 rounded-sm text-white text-[16px] font-medium ${category === "Sale" ? "bg-[#FF5A3C]" : category === "Rent" ? "bg-green-500" : "bg-blue-600"}`}>
+            <span className={`absolute top-3 left-3 text-xs px-4 py-1.5 rounded-sm text-white text-[16px] font-medium ${category === "Sale" ? "bg-[#FF5A3C]" : category === "Rent" ? "bg-green-500" : "bg-blue-300"}`}>
              For {category}
             </span>
          </div>
