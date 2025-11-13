@@ -49,12 +49,12 @@ const MyProperties = () => {
     return <Loading />;
   }
   return (
-    <div className="w-[90%] sm:w-10/12 mx-auto my-16 mt-30">
-      <h1 className="text-4xl font-bold text-center mb-10">My <span className="text-[#FF5A3C]">Properties</span></h1>
+    <div className="w-[90%] lg:w-[95%] 2xl:w-11/12 mx-auto my-16 mt-30">
+      <h1 className="text-xl sm:text-2xl md:text-4xl font-bold text-center mb-10">My <span className="text-[#FF5A3C]">Properties</span></h1>
 
       {myProperties.length === 0 ? ( <>
         <div className=" flex flex-col justify-center items-center">
-          <p className="text-center text-gray-500 text-xl">
+          <p className="text-center text-gray-500 text-sm sm:text-lg md:text-xl">
           You haven't added any property yet
         </p>
         <div>
@@ -63,25 +63,25 @@ const MyProperties = () => {
         </div>
         </>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-4 md:gap-8">
           {myProperties.map((property) => (
             <div
               key={property._id}
-              className="border rounded-lg shadow-md p-5 bg-white dark:bg-[#23272B] hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
+              className="border rounded-lg shadow-md p-5 bg-white dark:bg-[#23272B] hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
             >
               <img
                 src={property.image}
                 alt={property.propertyName}
                 className="w-full h-48 object-cover rounded-md"
               />
-              <h2 className="text-2xl font-bold mt-3">
+              <h2 className=" text-lg sm:text-xl md:text-2xl font-bold mt-3">
                 {property.propertyName}
               </h2>
-              <p className="text-gray-600 text-[16px] my-1 dark:text-gray-300"> <span className="font-semibold dark:text-gray-300">Category:</span> {property.category}</p>
-              <p className="text-gray-600 flex items-center gap-2 text-[16px] dark:text-gray-300"><span><FaLocationArrow className="text-[#FF5A3C] text-xl"></FaLocationArrow></span> {property.location}</p>
-              <p className="text-[#FF5A3C] font-bold text-lg my-1">Price: ${property.price}</p>
-              <p className="text-gray-500 dark:text-gray-300"> <span className="font-semibold">Posted :</span> {new Date(property.postedDate).toLocaleDateString()}</p>
-              <div className=" flex gap-3 mt-5 mb-2">
+              <p className="text-gray-600 text-sm sm:text-[16px] my-1 dark:text-gray-300"> <span className="font-semibold dark:text-gray-300">Category:</span> {property.category}</p>
+              <p className="text-gray-600 flex items-center gap-2 text-sm sm:text-[16px]dark:text-gray-300"><span><FaLocationArrow className="text-[#FF5A3C] text-xl"></FaLocationArrow></span> {property.location}</p>
+              <p className="text-[#FF5A3C] font-bold text-sm sm:text-lg my-1">Price: ${property.price}</p>
+              <p className="text-gray-500 dark:text-gray-300 text-sm sm:text-lg"> <span className="font-semibold">Posted :</span> {new Date(property.postedDate).toLocaleDateString()}</p>
+              <div className=" flex gap-3  mt-2 mb-2">
                 <Link 
                 to={`/properties/${property._id}`}
                 className="btn btn-sm bg-blue-500 text-white flex-1"

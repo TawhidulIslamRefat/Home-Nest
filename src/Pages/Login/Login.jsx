@@ -88,7 +88,7 @@ const Login = () => {
   return (
     <div>
       <div className="flex justify-center items-center min-h-screen lg:my-0 lg:min-h-screen">
-        <div className="card bg-base-100  w-[95%]   md:w-[60%] lg:w-[35%] shrink-0 rounded-[5px] shadow-2xl ">
+        <div className="card bg-base-100  w-[95%]   md:w-[70%] lg:w-[60%] 2xl:w-[35%] shrink-0 rounded-[5px] shadow-2xl ">
           <div className="card-body px-4 lg:px-15">
             <h1 className="text-xl sm:text-3xl md:text-4xl font-semibold text-center mt-2 lg:mt-[30px] pb-3 lg:pb-10 border-b border-base-300 px-5">
               Login your account

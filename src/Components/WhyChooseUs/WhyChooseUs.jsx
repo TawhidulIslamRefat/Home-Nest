@@ -11,8 +11,8 @@ const WhyChooseUs = () => {
           <span className=" bg-[#FFEBE7] text-center text-[#FF5A3C] text-xs md:text-xl p-1 rounded-xl">
           Choose Us
         </span>
-          <h2 className=" text-xl md:text-2xl lg:text-4xl font-bold mt-5">Why Choose Us</h2>
-          <p className="text-gray-600 my-2 md:my-4 max-w-xl mx-auto text-xs md:text-[16px] font-medium dark:text-gray-400">
+          <h2 className=" text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mt-5">Why Choose Us</h2>
+          <p className="text-gray-600 my-2 md:my-4 max-w-xl mx-auto text-xs md:text-[17px] font-medium dark:text-gray-400">
             We focus on trust, comfort, and transparency — making your property
             journey easier and smoother.
           </p>

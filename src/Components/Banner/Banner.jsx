@@ -1,7 +1,7 @@
 import React from "react";
 import Lottie from "lottie-react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -11,22 +11,21 @@ import houseAnimation2 from "../../../public/City Skyline Building.json";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { AiFillHome } from "react-icons/ai";
 import { Link } from "react-router";
+import { GiDuration } from "react-icons/gi";
 
 const Banner = () => {
   return (
     <div className="relative mt-6 mx-7">
-      <div className="swiper-button-prev !text-black font-bold border p-2 border-gray-300 hover:bg-[#FF5A3C] hover:!text-white hover:rounded-lg hover:bg-[#FF5A3C]">
-        <FaArrowLeft />
-      </div>
-      <div className="swiper-button-next !text-black !font-bold border p-2 border-gray-300 hover:bg-[#FF5A3C] hover:!text-white hover:rounded-lg">
-        <FaArrowRight />
-      </div>
-      <div className=" w-[98%]  md:w-11/12 mx-auto">
+      <div className=" w-[98%]  lg:w-11/12 mx-auto">
         <Swiper
-          modules={[Navigation]}
+          modules={[Navigation,Autoplay]}
           spaceBetween={30}
           slidesPerView={1}
-          autoplay:true
+          loop={true}
+          autoplay={{
+            delay:3000,
+            disableOnInteraction:false,
+          }}
           navigation={{
             nextEl: ".swiper-button-next",
             prevEl: ".swiper-button-prev",
@@ -35,7 +34,7 @@ const Banner = () => {
         >
 
           <SwiperSlide>
-            <div className="flex flex-col md:flex-row w-full items-center justify-around">
+            <div className="flex flex-col sm:flex-row w-full items-center justify-around">
               <div className="mb-4">
                 <p className="flex items-center gap-1 text-sm md:text-xl font-semibold">
                   <span className="text-[#FF5A3C] text-lg md:text-2xl">
@@ -43,7 +42,7 @@ const Banner = () => {
                   </span>{" "}
                   Real <span className="text-[#FF5A3C]"> Estate{" "}</span>
                 </p>
-                <h1 className="font-bold text-xl  md:text-5xl lg:text-7xl mt-1 md:mt-2 mb-2 md:mb-5 leading-6 md:leading-20">
+                <h1 className="font-bold text-xl  md:text-5xl lg:text-7xl mt-1 md:mt-2 mb-2 md:mb-5 leading-6 md:leading-13 lg:leading-20">
                   Find Your Dream  <br /> House <span className="text-[#FF5A3C]">By Us</span>
                 </h1>
                 <p className="text-xs md:text-xl font-medium border-l border-gray-400 pl-4 text-gray-700 mb-5 leading-5 md:leading-9 dark:text-gray-300">
@@ -54,14 +53,14 @@ const Banner = () => {
                   FIND NOW
                 </Link>
               </div>
-              <div className=" w-full md:w-[600] lg:w-[1000px] ">
+              <div className=" w-full md:w-[600] lg:w-[1000px] xl:w-[800px] h-40 2xl:h-90 ">
                 <Lottie animationData={houseAnimation} loop={true} />
               </div>
             </div>
             
           </SwiperSlide>
           <SwiperSlide>
-            <div className="flex flex-col md:flex-row-reverse items-center justify-around">
+            <div className="flex flex-col sm:flex-row-reverse items-center justify-around">
               <div className="text-right mr-5 mb-4">
                 <p className="flex  items-center justify-end mr-3 gap-1 text-sm md:text-xl font-semibold text-right">
                   <span className="text-[#FF5A3C] text-lg md:text-2xl">
@@ -70,7 +69,7 @@ const Banner = () => {
                   Real
                   <span className="text-[#FF5A3C]"> Estate{" "}</span>
                 </p>
-                <h1 className="font-bold text-xl  md:text-5xl lg:text-7xl mt-1 md:mt-2 mb-2 md:mb-5 md:leading-20 leading-6">
+                <h1 className="font-bold text-xl  md:text-5xl lg:text-7xl mt-1 md:mt-2 mb-2 md:mb-5 md:leading-13 lg:leading-20 leading-6">
                   Step into a world where comfort <span className="text-[#FF5A3C]">meets style</span>
                 </h1>
                 <p className="text-xs md:text-xl font-medium border-r pr-4 border-gray-400 pl-4 text-gray-700 mb-5 leading-5 md:leading-9 dark:text-gray-300">
@@ -84,22 +83,22 @@ const Banner = () => {
                   Buy Now
                 </Link>
               </div>
-              <div className="w-[300] md:w-[600] lg:w-[1000px] h-40">
+              <div className="w-[300px] md:w-[600px] lg:w-[1000px] h-40 2xl:h-90">
                 <Lottie animationData={houseAnimation1} loop={true} />
               </div>
             </div>
           </SwiperSlide>
          
           <SwiperSlide>
-            <div className="flex flex-col md:flex-row items-center justify-around">
-              <div className="ml-10 mb-6">
+            <div className="flex flex-col sm:flex-row items-center justify-around">
+              <div className="ml-0 lg:ml-10 mb-6">
                 <p className="flex  items-center  gap-1 text-lg md:text-xl font-semibold text-right">
                   <span className="text-[#FF5A3C] text-lg md:text-2xl">
                     <AiFillHome />
                   </span>{" "}
                   Real <span className="text-[#FF5A3C]">Estate{" "}</span>
                 </p>
-                <h1 className="font-bold text-xl  md:text-5xl lg:text-7xl mt-1 md:mt-2 mb-1 md:mb-5  md:leading-20 leading-6">
+                <h1 className="font-bold text-xl  md:text-5xl lg:text-7xl mt-1 md:mt-2 mb-1 md:mb-5  md:leading-13 lg:leading-20 leading-6">
                   Safe, secure, and verified <span className="text-[#FF5A3C]">properties.</span>
                 </h1>
                 <p className="text-xs md:text-xl font-medium border-l border-gray-400 pl-4 text-gray-700 mb-5 leading-5 md:leading-9 dark:text-gray-300">
@@ -114,7 +113,7 @@ const Banner = () => {
                   RENT
                 </Link>
               </div>
-              <div className="w-full md:w-[600] lg:w-[1000px]">
+              <div className="w-full sm:w-[350px]  md:w-[800px] lg:w-[1000px]">
                 <Lottie animationData={houseAnimation2} loop={true} />
               </div>
             </div>

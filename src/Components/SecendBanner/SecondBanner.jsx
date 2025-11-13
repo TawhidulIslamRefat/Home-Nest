@@ -19,11 +19,11 @@ const SecondBanner = ({setSearchText,setSort}) => {
     >
       <div className="w-10/12 mx-auto grid lg:grid-cols-2 items-center gap-10 py-15">
         <div className="space-y-6">
-          <h1 className=" text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold leading-tight">
+          <h1 className=" text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold leading-tight">
             Easy way to find <br /> a perfect{" "}
             <span className="text-[#FF5A3C]">Property</span>
           </h1>
-          <p className="text-gray-600 max-w-lg font-medium dark:text-gray-300 text-xs sm:text-sm">
+          <p className="text-gray-600 max-w-lg font-medium dark:text-gray-300 text-xs sm:text-sm md:text-lg">
             Discover the perfect place that matches your lifestyle and comfort.
             Every property is chosen with care to bring you peace and happiness.
           </p>
@@ -58,12 +58,12 @@ const SecondBanner = ({setSearchText,setSort}) => {
           <img
             src={image1}
             alt=""
-            className="w-80 h-56 rounded-xl object-cover shadow-md"
+            className="w-80 h-56 rounded-xl object-cover shadow-md lg:absolute 2xl:relative top-0 lg:-top-4"
           />
           <img
             src={image2}
             alt=""
-            className="w-72 h-48 rounded-xl object-cover shadow-xl absolute -top-5 -right-5 border-4 border-white hidden md:flex"
+            className="w-72 h-48 rounded-xl object-cover shadow-xl absolute -top-5 -right-5 border-4 border-white hidden sm:flex lg:hidden 2xl:flex 2xl:-top-25"
           />
           <img
             src={image3}

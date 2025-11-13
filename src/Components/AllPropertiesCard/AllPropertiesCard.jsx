@@ -14,7 +14,7 @@ const AllPropertiesCard = ({ property }) => {
   } = property;
   return (
     <div className="flex">
-      <div className=" rounded-lg shadow-sm bg-white dark:bg-[#1D232A] dark:border hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+      <div className=" rounded-lg shadow-sm bg-white dark:bg-[#1D232A] dark:border hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
         <div className="relative">
           <img
             src={image}

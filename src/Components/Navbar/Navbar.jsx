@@ -96,10 +96,10 @@ const handleTheme = () =>{
               {links}
             </ul>
           </div>
-          <div className="flex items-end justify-center gap-2">
+          <div className="grid grid-cols-1 items-end justify-center gap-2">
             <a href="/" className="text-sm md:text-2xl font-semibold  text-black dark:text-gray-300 ">
               Home<span className="text-[#FF5A3C] ">Nest</span>{" "}
-              <span className="text-[17px] font-medium text-black dark:text-gray-400 hidden md:flex">
+              <span className="text-[17px] font-medium text-black dark:text-gray-400 hidden 2xl:block">
                 - A Real Estate Listing Portal
               </span>{" "}
             </a>
@@ -130,7 +130,7 @@ const handleTheme = () =>{
                 </div>
                 <div
                   tabIndex="-1"
-                  className="dropdown-content menu bg-base-300 rounded-box z-1 w-65 p-2 shadow-sm"
+                  className="dropdown-content menu bg-base-300 rounded-box z-1 w-65 p-2 shadow-sm mt-16"
                 >
                   <div className="border-b-2 border-gray-400">
                     <h1 className="text-sm md:text-[18px] font-bold pt-2 text-center">{user.displayName}</h1>

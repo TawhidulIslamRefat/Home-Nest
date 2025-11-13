@@ -49,7 +49,7 @@ const UpdateProperty = () => {
   }
   return (
         <div className=' dark:bg-[#1D232A] py-14 min-h-screen mt-20'>
-            <div className=' w-[97%] md:w-3xl mx-auto bg-white shadow-xl dark:bg-[#23272B] rounded-xl p-5 md:p-10 border border-white'>
+            <div className=' w-[97%] lg:w-3xl mx-auto bg-white shadow-xl dark:bg-[#23272B] rounded-xl p-5 md:p-10 border border-white'>
                <h1 className='text-center text-xl sm:text-2xl md:text-4xl font-bold mb-8'>
               Update <span className="text-[#FF5A3C]">Property</span>
                </h1>

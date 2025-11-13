@@ -59,13 +59,13 @@ const PropertyDetails = () => {
       <img
         src={property.image}
         alt=""
-        className="w-full h-[350px] md:h-[450px] rounded-md object-cover"
+        className="w-[99%] mx-auto lg:mx-0 lg:w-full h-[350px] md:h-[450px] rounded-md object-cover"
       />
-      <h1 className="text-xl sm:text-2xl md:text-4xl font-bold mt-6 ml-1 sm:ml-0">{property.propertyName}</h1>
-      <p className="text-gray-600 my-5 loading-7 font-medium dark:text-gray-300 text-xs sm:text-sm mx-1 sm:mx-0">
+      <h1 className="text-xl sm:text-2xl md:text-4xl font-bold mt-6 ml-1 ">{property.propertyName}</h1>
+      <p className="text-gray-600 my-5 loading-7 font-medium dark:text-gray-300 text-xs sm:text-sm mx-2">
         {property.description}
       </p>
-      <div className="flex gap-10 text-sm sm:text-lg font-semibold mt-4 p-4 sm:p-0">
+      <div className="flex gap-10 text-sm sm:text-lg font-semibold mt-4 p-4 sm:p-2 md:p-2 lg:p-0">
         <div className="flex flex-col sm:flex-row gap-10">
           <p> 📍 {property.location}</p>
         <p className="font-bold"> 💰 ${property.price}</p>
@@ -75,7 +75,7 @@ const PropertyDetails = () => {
         <p> Posted On : {new Date(property.postedDate).toLocaleDateString()}</p>
         </div>
       </div>
-      <div className="flex items-center gap-2 my-5 p-4 sm:p-0">
+      <div className="flex items-center gap-2 my-5 p-4">
         <div>
           <img
             className="w-10 h-10 sm:w-15 sm:h-15 rounded-full"
@@ -94,12 +94,12 @@ const PropertyDetails = () => {
 
         {
           rating.length===0 ? (
-            <p className="text-sm sm:text-xl text-gray-600">No reviews yet.</p>
+            <p className="text-sm sm:text-xl text-gray-600 text-center xl:text-left">No reviews yet.</p>
           ):(
             <div className="space-y-4">
            {
             rating.slice(0,3).map((r,index)=>(
-              <div key={index} className="border w-[98%] mx-auto sm:mx-0 sm:w-full p-4 rounded-lg bg-white dark:bg-[#23272B] shadow-md flex gap-4 items-start">
+              <div key={index} className="border w-[98%] mx-auto lg:mx-0 lg:w-full p-4 rounded-lg bg-white dark:bg-[#23272B] shadow-md flex gap-4 items-start">
                <div>
                 <img src={r.userPhoto} alt={r.userName} 
                  className="w-12 h-12 rounded-full"
@@ -122,7 +122,7 @@ const PropertyDetails = () => {
           )
         }
         
-      <div className="mt-12 w-[97%] sm:w-full mx-auto sm:mx-auto bg-white rounded-lg shadow-xl border-2 dark:bg-[#23272B] border-gray-300 p-10">
+      <div className="mt-12 w-[97%] xl:w-full mx-auto sm:mx-auto bg-white rounded-lg shadow-xl border-2 dark:bg-[#23272B] border-gray-300 p-10">
         <form onSubmit={handleAddRating} className="space-y-5">
           <h3 className="text-xl sm:text-2xl font-bold mb-4 text-center">Rate This Propert</h3>
             <label className="text-sm sm:text-xl font-semibold">Choose Rating</label>

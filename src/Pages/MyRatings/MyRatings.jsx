@@ -21,21 +21,21 @@ const MyRatings = () => {
     return <Loading></Loading>
   }
   return (
-    <div className="w-11/12 mx-auto py-14 mt-16 overflow-x-hidden">
-      <h1 className="text-4xl font-bold text-center mb-10">
+    <div className=" w-[95%] md:w-11/12 mx-auto py-14 mt-16 overflow-x-hidden">
+      <h1 className="text-xl sm:text-2xl md:text-4xl font-bold text-center mb-10">
         My <span className="text-[#FF5A3C]">Ratings & Reviews</span>
       </h1>
       {myRatings.length === 0 && (
-        <p className="text-center text-gray-500 text-lg">
+        <p className="text-center text-gray-500 text-sm sm:text-lg md:text-xl">
           You haven't rated any property yet.
         </p>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
         {myRatings.map((r, index) => (
           <div
             key={index}
-            className="bg-white shadow-xl border border-gray-100 dark:bg-[#23272B] rounded-xl p-5 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
+            className="bg-white shadow-xl border border-gray-100 dark:bg-[#23272B] rounded-xl p-5 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
           >
             <div className="w-full h-44 rounded-lg overflow-hidden mb-4">
               <img
@@ -44,18 +44,18 @@ const MyRatings = () => {
                 className="w-full h-full object-cover hover:scale-110 transition duration-300"
               />
             </div>
-            <h2 className="text-xl font-bold text-[#1f1f1f] dark:text-white">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-[#1f1f1f] dark:text-white">
               {r.propertyName}
             </h2>
             <div className="flex items-center gap-2 mt-2 text-yellow-500">
               {[...Array(parseInt(r.rating))].map((_, i) => (
                 <FaStar key={i} />
               ))}
-              <span className="text-black font-medium text-xl dark:text-[#FF5A3C]">
+              <span className="text-black font-medium text-sm sm:text-[16px] dark:text-[#FF5A3C]">
                 {r.rating}/5
               </span>
             </div>
-            <p className="text-gray-700 mt-3 italic dark:text-gray-300">"{r.review.slice(0,100)+("...")}"</p>
+            <p className="text-gray-700 mt-3 italic dark:text-gray-300 text-sm sm:text-[16px]">"{r.review.slice(0,100)+("...")}"</p>
 
             <div className="flex items-center gap-3 mt-4">
               <img
@@ -63,13 +63,13 @@ const MyRatings = () => {
                 className="w-10 h-10 rounded-full border"
               />
               <div>
-                <p className="font-medium">{r.userName}</p>
+                <p className="font-medium text-sm sm:text-lg">{r.userName}</p>
                 <p className="text-xs text-gray-500 dark:text-gray-300">
                   {new Date(r.date).toLocaleDateString()}
                 </p>
               </div>
             </div>
-            <span className="inline-block mt-4 px-4 py-1 text-sm font-medium rounded-full bg-[#FF5A3C]/10 text-[#FF5A3C]">
+            <span className="inline-block mt-4 px-2 py-0.5 sm:px-4 sm:py-1 font-medium rounded-full bg-[#FF5A3C]/10 text-[#FF5A3C] text-xs sm:text-sm">
               Reviewed Property
             </span>
           </div>

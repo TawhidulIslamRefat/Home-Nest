@@ -3,12 +3,12 @@ import React from "react";
 const Footer = () => {
   return (
     <div className="bg-[#171B2A] pt-4 ">
-      <footer className=" w-full md:w-11/12 mx-auto footer sm:footer-horizontal p-4  md:p-10">
+      <footer className=" w-full lg:w-11/12 mx-auto footer grid sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 p-4   md:p-5 lg:p-10">
         <nav>
           <a href="/" className="text-lg md:text-2xl font-semibold  text-base-100 dark:text-gray-300 ">
               Home<span className="text-[#FF5A3C] ">Nest</span>{" "}
             </a>
-          <p className="text-sm md:text-[17px] text-white leading-5 md:leading-7">Your trusted companion for <br /> property buying, renting, and living.</p>
+          <p className="text-sm md:text-[17px] text-white p-0 md:p-1 leading-5 md:leading-7">Your trusted companion for <br /> property buying, renting, and living.</p>
         </nav>
         <nav className="space-y-0 md:space-y-1">
           <h6 className="footer-title text-white text-sm  md:text-xl">Company</h6>

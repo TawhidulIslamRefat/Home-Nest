@@ -5,16 +5,16 @@ import iamge3 from "../../assets/23.png";
 import { FaLongArrowAltRight } from "react-icons/fa";
 const OurService = () => {
   return (
-    <div className=" w-[85%] md:w-9/12 mx-auto ">
+    <div className=" w-[85%] sm:w-[90%] 2xl:w-9/12 mx-auto ">
       <div className="flex items-center justify-center">
         <span className=" bg-[#FFEBE7] text-center text-[#FF5A3C] text-sm md:text-xl p-1.5 rounded-2xl">
           Our Service
         </span>
       </div>
       <div>
-        <h1 className="text-center font-bold text-xl md:text-2xl lg:text-4xl mt-5">Our Main Focus</h1>
+        <h1 className="text-center font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl mt-5">Our Main Focus</h1>
         <div>
-          <div className="grid grid-cols-1 md:grid-cols-3 items-center justify-center gap-10 md:gap-20 my-5 md:my-15">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 items-center justify-center gap-10 lg:gap-20 my-5 md:my-15">
             <div className="card  bg-base-100  border shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
               <figure className="px-15 md:px-10 pt-3 md:pt-10">
                 <img
