@@ -56,7 +56,6 @@ const UpdateProperty = () => {
         </h1>
 
         <form onSubmit={hanldeUpdate}>
-          {/* property name */}
           <div>
             <label className="block font-semibold mb-1 text-sm">
               {" "}
@@ -71,8 +70,6 @@ const UpdateProperty = () => {
               required
             />
           </div>
-
-          {/* price and category */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2 my-5">
             <div>
               <label className="block font-semibold mb-1 text-sm">

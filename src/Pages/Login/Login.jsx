@@ -94,7 +94,7 @@ const Login = () => {
         <div className="card bg-base-100  w-[95%]   md:w-[70%] lg:w-[60%] 2xl:w-[35%] shrink-0 rounded-[5px] shadow-2xl ">
           <div className="card-body px-4 lg:px-15">
             <h1 className="text-xl sm:text-3xl md:text-4xl font-semibold text-center mt-2 lg:mt-[30px] pb-3 lg:pb-10 border-b border-base-300 px-5">
-              Login your account
+              Login your <span className="text-[#FF5A3C]">account</span>
             </h1>
             <form onSubmit={handleLogin}>
               <fieldset className="fieldset ">

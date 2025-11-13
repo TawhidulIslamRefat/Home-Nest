@@ -51,7 +51,6 @@ const AddProperty = () => {
         </h1>
 
         <form onSubmit={handleAddProperty} className="w-full">
-          {/* property name */}
           <div>
             <label className="block font-semibold mb-1 text-sm">
               {" "}
@@ -66,7 +65,6 @@ const AddProperty = () => {
             />
           </div>
 
-          {/* price and category */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2 my-5">
             <div>
               <label className="block font-semibold mb-1 text-sm">

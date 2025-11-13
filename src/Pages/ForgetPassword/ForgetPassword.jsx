@@ -1,6 +1,7 @@
 import React, { use, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../Contexts/AuthContext";
+import Swal from "sweetalert2";
 
 const ForgetPassword = () => {
   const navigate = useNavigate();
@@ -12,17 +13,30 @@ const ForgetPassword = () => {
   const handleForgetPassword = (event) => {
     event.preventDefault();
     if (!email) {
-      alert("Please Enter Your Email First");
+       Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Please Enter Your Email First",
+              });
       return;
     }
     forgetPassword(email)
       .then(() => {
-        alert("Password Reset email sent! Check your Inbox", {
-          onClose: () => navigate("/login"),
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Password Reset email sent! Check your Inbox",
+          showConfirmButton: false,
+          timer: 1500,
         });
+        navigate('/login');
       })
       .catch((error) => {
-        alert(error.message);
+        Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: error.message,
+              });
       });
   };
 
@@ -32,7 +46,7 @@ const ForgetPassword = () => {
       <div className="card bg-base-100 w-[95%]   md:w-[80%] lg:w-[60%]  2xl:w-[35%] rounded-[5px] shadow-2xl ">
         <div className="card-body px-15 flex-1">
           <h1 className=" text-xl md:text-2xl lg:text-4xl font-semibold text-center mt-[30px] pb-10 border-b border-base-300 px-5">
-            Forget Your Password
+            Forget Your <span className="text-[#FF5A3C]">Password</span>
           </h1>
           <form onSubmit={handleForgetPassword}>
             <fieldset className="fieldset">
