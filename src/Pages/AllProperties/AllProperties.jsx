@@ -5,6 +5,7 @@ import Lottie from "lottie-react";
 import search from "../../../public/Searching.json";
 import { Link } from "react-router";
 import Loading from "../../Components/Loading/Loading";
+import Swal from "sweetalert2";
 
 const AllProperties = () => {
   const [properties, setProperties] = useState([]);
@@ -18,7 +19,14 @@ const AllProperties = () => {
     )
       .then((res) => res.json())
       .then((data) => setProperties(data))
-      .catch((error) => console.log(error))
+      .catch((error) =>
+         Swal.fire({
+                   icon: "error",
+                   title: "Oops...",
+                   text: "Something went wrong!",
+                   error,
+                 })
+    )
       .finally(() => setLoading(false));
   }, [searchText, sort]);
 

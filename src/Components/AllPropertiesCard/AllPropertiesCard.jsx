@@ -2,7 +2,7 @@ import { FaLocationDot } from "react-icons/fa6";
 import { Link } from "react-router";
 
 const AllPropertiesCard = ({ property }) => {
-  console.log(property);
+  // console.log(property);
   const {
     _id,
     propertyName,

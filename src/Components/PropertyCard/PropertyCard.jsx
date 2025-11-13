@@ -3,7 +3,7 @@ import { FaLocationDot } from 'react-icons/fa6';
 import { Link } from 'react-router';
 
 const PropertyCard = ({property}) => {
-    console.log(property);
+   //  console.log(property);
     const {_id,propertyName,category,price,location,description,image} = property;
     return (
         <div className=' rounded-lg shadow-sm bg-white dark:bg-[#1D232A] dark:border hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between'>
