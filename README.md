@@ -2,7 +2,7 @@
 
 **HomeNest** — A modern real estate listing platform where users can explore, post, and manage property listings for rent or sale with ease.
 
-🔗 **Live Site URL:** [https://homenest-client.vercel.app](https://home-nest-1.netlify.app/)
+🔗 **Live Site URL:** [https://home-nest-1.netlify.app/]
 
 ---
 
