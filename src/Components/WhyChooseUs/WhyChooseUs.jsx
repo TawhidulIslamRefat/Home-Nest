@@ -5,7 +5,7 @@ import { FaHandshake, FaWallet } from "react-icons/fa6";
 const WhyChooseUs = () => {
   return (
     <div className="w-11/12 mx-auto my-10 md:my-20">
-      <div className="center mb-12 text-center">
+      <div className="center mb-12 text-center" data-aos="fade-up">
         <span className="bg-[#FFEBE7] text-center text-[#FF5A3C] text-xs md:text-xl p-1 rounded-xl">
           Choose Us
         </span>
@@ -18,7 +18,7 @@ const WhyChooseUs = () => {
         </p>
       </div>
       <div className="grid gap-8 grid-cols-2 lg:grid-cols-4">
-        <div className="card bg-base-100 dark:border shadow-sm p-5 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+        <div className="card bg-base-100 dark:border shadow-sm p-5 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300" data-aos="fade-down">
          <FaHome className="text-xl md:text-4xl text-[#FF5A3C] mb-4">
          </FaHome>
          <h2 className="text-sm md:text-xl font-semibold mb-2">
@@ -28,7 +28,7 @@ const WhyChooseUs = () => {
           Explore thousands of properties in different locations and price ranges.
          </p>
         </div>
-        <div className="card bg-base-100 dark:border shadow-sm p-5 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+        <div className="card bg-base-100 dark:border shadow-sm p-5 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300" data-aos="fade-up">
           <FaHandshake className="text-xl md:text-4xl text-[#FF5A3C] mb-4"   />         
          <h2 className="text-sm md:text-xl font-semibold mb-2">
           Trusted by Users
@@ -37,7 +37,7 @@ const WhyChooseUs = () => {
           Verified listings and reliable information from real owners and agents.
          </p>
         </div>
-        <div className="card bg-base-100 dark:border shadow-sm p-5 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+        <div className="card bg-base-100 dark:border shadow-sm p-5 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300" data-aos="fade-up">
          <FaShieldAlt className="text-xl md:text-4xl text-[#FF5A3C] mb-4">
          </FaShieldAlt>
          <h2 className="text-sm md:text-xl font-semibold mb-2">
@@ -47,7 +47,7 @@ const WhyChooseUs = () => {
           No hidden fees, no confusion. Everything is clear and secure for you.
          </p>
         </div>
-        <div className="card bg-base-100 dark:border shadow-sm p-5 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+        <div className="card bg-base-100 dark:border shadow-sm p-5 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300" data-aos="fade-down">
          <FaWallet  className="text-xl md:text-4xl text-[#FF5A3C] mb-4">
          </FaWallet>
          <h2 className="text-sm md:text-xl font-semibold mb-2">

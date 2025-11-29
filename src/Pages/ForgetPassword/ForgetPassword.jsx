@@ -17,7 +17,6 @@ const ForgetPassword = () => {
                 icon: "error",
                 title: "Oops...",
                 text: "Please Enter Your Email First",
-                confirmButtonColor:"#FF5A3C"
               });
       return;
     }

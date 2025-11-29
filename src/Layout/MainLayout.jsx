@@ -3,10 +3,17 @@ import Navbar from '../Components/Navbar/Navbar';
 import { Outlet, useLocation } from 'react-router';
 import Footer from '../Components/Footer/Footer';
 import Loading from '../Components/Loading/Loading';
+import Aos from 'aos';
+import "aos/dist/aos.css";
 
 const MainLayout = () => {
     const [showLoader, setShowLoader] = useState(false);
   const location = useLocation();
+  useEffect(()=>{
+    Aos.init({
+      duration:1000,
+    })
+  },[])
   useEffect(() => {
     setShowLoader(true);
     const timeOut = setTimeout(() => {

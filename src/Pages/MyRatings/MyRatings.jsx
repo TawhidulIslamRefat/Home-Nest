@@ -26,11 +26,12 @@ const MyRatings = () => {
   return (
     <div className=" w-[95%] md:w-11/12 mx-auto py-14 mt-16 overflow-x-hidden">
       <title>My-Rating</title>
-      <h1 className="text-xl sm:text-2xl md:text-4xl font-bold text-center mb-10">
+      <h1 className="text-xl sm:text-2xl md:text-4xl font-bold text-center mb-10" data-aos="fade-down"
+     data-aos-easing="linear">
         My <span className="text-[#FF5A3C]">Ratings & Reviews</span>
       </h1>
       {myRatings.length === 0 && (
-        <p className="text-center text-gray-500 text-sm sm:text-lg md:text-xl">
+        <p className="text-center text-gray-500 text-sm sm:text-lg md:text-xl" data-aos="fade-left">
           You haven't rated any property yet.
         </p>
       )}
@@ -40,7 +41,7 @@ const MyRatings = () => {
           <div
             key={index}
             className="bg-white shadow-xl border border-gray-100 dark:bg-[#23272B] rounded-xl p-5 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
-          >
+           data-aos="fade-up">
             <div className="w-full h-44 rounded-lg overflow-hidden mb-4">
               <img
                 src={r.propertyImage}

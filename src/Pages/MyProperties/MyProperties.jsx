@@ -52,13 +52,19 @@ const MyProperties = () => {
   return (
     <div className="w-[90%] lg:w-[95%] 2xl:w-11/12 mx-auto my-16 mt-30">
       <title>My-Properties</title>
-      <h1 className="text-xl sm:text-2xl md:text-4xl font-bold text-center mb-10">
+      <h1
+        className="text-xl sm:text-2xl md:text-4xl font-bold text-center mb-10"
+        data-aos="fade-up"
+      >
         My <span className="text-[#FF5A3C]">Properties</span>
       </h1>
 
       {myProperties.length === 0 ? (
         <>
-          <div className=" flex flex-col justify-center items-center">
+          <div
+            className=" flex flex-col justify-center items-center"
+            data-aos="fade-up"
+          >
             <p className="text-center text-gray-500 text-sm sm:text-lg md:text-xl">
               You haven't added any property yet
             </p>
@@ -78,6 +84,8 @@ const MyProperties = () => {
             <div
               key={property._id}
               className="border rounded-lg shadow-md p-5 bg-white dark:bg-[#23272B] hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+              data-aos="fade-down"
+              data-aos-easing="linear"
             >
               <img
                 src={property.image}

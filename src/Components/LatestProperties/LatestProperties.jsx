@@ -12,7 +12,7 @@ const LatestProperties = () => {
 
   return (
     <div className=" w-[90%] sm:w-[95%] 2xl:w-9/12 mx-auto">
-      <div className="text-center mb-10 mt-15 md:mt-20 md:mb-20">
+      <div className="text-center mb-10 mt-15 md:mt-20 md:mb-20" data-aos="fade-up">
         <span className=" bg-[#FFEBE7] text-center text-[#FF5A3C] text-xm md:text-xl p-1 rounded-xl">
           Latest Property
         </span>

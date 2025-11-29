@@ -44,7 +44,7 @@ const AllProperties = () => {
         ></SecondBanner>
       </section>
       <section>
-        <div className="text-center mt-15 ">
+        <div className="text-center mt-15 " data-aos="fade-up">
           <span className=" bg-[#FFEBE7] text-center text-[#FF5A3C] text-sm md:text-xl p-1 rounded-xl">
             all properties
           </span>

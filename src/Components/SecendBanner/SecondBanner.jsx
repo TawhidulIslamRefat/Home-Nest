@@ -19,16 +19,16 @@ const SecondBanner = ({setSearchText,setSort}) => {
     >
       <div className="w-10/12 mx-auto grid lg:grid-cols-2 items-center gap-10 py-15">
         <div className="space-y-6">
-          <h1 className=" text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold leading-tight">
+          <h1 className=" text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold leading-tight" data-aos="fade-right" >
             Easy way to find <br /> a perfect{" "}
             <span className="text-[#FF5A3C]">Property</span>
           </h1>
-          <p className="text-gray-600 max-w-lg font-medium dark:text-gray-300 text-xs sm:text-sm md:text-lg">
+          <p className="text-gray-600 max-w-lg font-medium dark:text-gray-300 text-xs sm:text-sm md:text-lg" data-aos="fade-right">
             Discover the perfect place that matches your lifestyle and comfort.
             Every property is chosen with care to bring you peace and happiness.
           </p>
 
-          <div className="shadow-lg p-5 rounded-xl bg-white space-y-3 z-100">
+          <div className="shadow-lg p-5 rounded-xl bg-white space-y-3 z-100" data-aos="fade-left">
             <div className="flex items-center gap-3 flex-col md:flex-row">
               <input
                 type="text"
@@ -59,17 +59,17 @@ const SecondBanner = ({setSearchText,setSort}) => {
             src={image1}
             alt=""
             className="w-80 h-56 rounded-xl object-cover shadow-md lg:absolute 2xl:relative top-0 lg:-top-4"
-          />
+           data-aos="fade-left"/>
           <img
             src={image2}
             alt=""
             className="w-72 h-48 rounded-xl object-cover shadow-xl absolute -top-5 -right-5 border-4 border-white hidden sm:flex lg:hidden 2xl:flex 2xl:-top-25"
-          />
+           data-aos="fade-right"/>
           <img
             src={image3}
             alt=""
             className="w-72 h-48 rounded-xl object-cover shadow-xl absolute md:-bottom-5 -bottom-25 -left-5 border-4 border-white "
-          />
+          data-aos="fade-up" />
         </div>
       </div>
     </div>

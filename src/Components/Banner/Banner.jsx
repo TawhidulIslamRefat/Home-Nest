@@ -36,7 +36,7 @@ const Banner = () => {
           <SwiperSlide>
             <div className="flex flex-col sm:flex-row w-full items-center justify-around">
               <div className="mb-4">
-                <p className="flex items-center gap-1 text-sm md:text-xl font-semibold">
+                <p className="flex items-center gap-1 text-sm md:text-xl font-semibold" data-aos="fade-right">
                   <span className="text-[#FF5A3C] text-lg md:text-2xl">
                     <AiFillHome />
                   </span>{" "}
@@ -45,7 +45,7 @@ const Banner = () => {
                 <h1 className="font-bold text-xl  md:text-5xl lg:text-7xl mt-1 md:mt-2 mb-2 md:mb-5 leading-6 md:leading-13 lg:leading-20">
                   Find Your Dream  <br /> House <span className="text-[#FF5A3C]">By Us</span>
                 </h1>
-                <p className="text-xs md:text-xl font-medium border-l border-gray-400 pl-4 text-gray-700 mb-5 leading-5 md:leading-9 dark:text-gray-300">
+                <p className="text-xs md:text-xl font-medium border-l border-gray-400 pl-4 text-gray-700 mb-5 leading-5 md:leading-9 dark:text-gray-300" data-aos="fade-right">
                   Browse thousands of trusted properties, compare prices, <br />{" "}
                   and choose the one that fits your lifestyle.
                 </p>
@@ -62,7 +62,7 @@ const Banner = () => {
           <SwiperSlide>
             <div className="flex flex-col sm:flex-row-reverse items-center justify-around">
               <div className="text-right mr-5 mb-4">
-                <p className="flex  items-center justify-end mr-3 gap-1 text-sm md:text-xl font-semibold text-right">
+                <p className="flex  items-center justify-end mr-3 gap-1 text-sm md:text-xl font-semibold text-right" data-aos="fade-right">
                   <span className="text-[#FF5A3C] text-lg md:text-2xl">
                     <AiFillHome />
                   </span>{" "}
@@ -72,7 +72,7 @@ const Banner = () => {
                 <h1 className="font-bold text-xl  md:text-5xl lg:text-7xl mt-1 md:mt-2 mb-2 md:mb-5 md:leading-13 lg:leading-20 leading-6">
                   Step into a world where comfort <span className="text-[#FF5A3C]">meets style</span>
                 </h1>
-                <p className="text-xs md:text-xl font-medium border-r pr-4 border-gray-400 pl-4 text-gray-700 mb-5 leading-5 md:leading-9 dark:text-gray-300">
+                <p className="text-xs md:text-xl font-medium border-r pr-4 border-gray-400 pl-4 text-gray-700 mb-5 leading-5 md:leading-9 dark:text-gray-300" data-aos="fade-right">
                   Explore premium homes built for better living — modern spaces,{" "}
                   <br /> smart layouts, and the warmth you deserve
                 </p>
