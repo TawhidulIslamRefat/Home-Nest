@@ -27,9 +27,16 @@
 
 ---
 
-## 💻 Screenshots
+## 🖼️ Screenshots
 
-![HomeNest Screenshot](https://i.ibb.co/DgL4kXfr/Screenshot-165.png)
+<p align="center">
+  <img src="https://i.ibb.co/cc56kVvf/Screenshot-2025-12-31-123016.png" width="48%" />
+  <img src="https://i.ibb.co/GQ4gqGhZ/Screenshot-2025-12-31-123043.png" width="48%" />
+</p>
+<p align="center">
+  <img src="https://i.ibb.co/Mkk8yNFR/Screenshot-2025-12-31-123157.png" width="48%" />
+  <img src="https://i.ibb.co/tp2jWVMF/Screenshot-2025-12-31-123338.png" width="48%" />
+</p>
 
 ---
 
