@@ -1,13 +1,15 @@
-import React, { use, useEffect, useState } from "react";
+import React, { use, useEffect, useState, useRef } from "react";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../../Contexts/AuthContext";
-import { FaMoon, FaSun } from "react-icons/fa";
+import { FaMoon, FaSun, FaUser, FaTachometerAlt, FaSignOutAlt, FaCog, FaBell, FaChevronDown } from "react-icons/fa";
 import Swal from "sweetalert2";
 import image from "../../assets/icons8-home-48.png";
 
 const Navbar = () => {
   const { user, logOut } = use(AuthContext);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
   const [theme, setTheme] = useState(() => {
     const savedTheme = localStorage.getItem("theme");
     return savedTheme ? savedTheme : "light";
@@ -33,6 +35,12 @@ const Navbar = () => {
           </li>
         </>
       )}
+      <li className="text-[16px] font-medium">
+        <NavLink to="/about">About</NavLink>
+      </li>
+      <li className="text-[16px] font-medium">
+        <NavLink to="/contact-us">Contact US</NavLink>
+      </li>
     </>
   );
 
@@ -40,6 +48,20 @@ const Navbar = () => {
     localStorage.setItem("theme", theme);
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setProfileDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const handleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
@@ -69,9 +91,17 @@ const Navbar = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
 
+  const toggleProfileDropdown = () => {
+    setProfileDropdownOpen(!profileDropdownOpen);
+  };
+
+  const closeProfileDropdown = () => {
+    setProfileDropdownOpen(false);
+  };
+
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 bg-base-100 shadow-2xl">
-      <div className="navbar w-full md:w-11/12 mx-auto  mt-1">
+    <div className="sticky top-0 z-50 bg-base-100 shadow-2xl">
+      <div className="navbar w-full md:w-10/12 mx-auto  mt-1">
         <div className="navbar-start">
           <div className="lg:hidden">
             <button onClick={toggleMobileMenu} className="btn btn-ghost">
@@ -137,35 +167,100 @@ const Navbar = () => {
           </div>
           {user && user.photoURL ? (
             <>
-              <div className="dropdown dropdown-left">
-                <div tabIndex={0} role="button" className=" m-1">
-                  <img
-                    className="w-10 md:w-12 h-10 md:h-12 rounded-full"
-                    src={user.photoURL}
-                    alt="user avator"
-                  />
-                </div>
-                <div
-                  tabIndex="-1"
-                  className="dropdown-content menu bg-base-300 rounded-box z-1 w-65 p-2 shadow-sm mt-16"
+              <div className="relative" ref={dropdownRef}>
+                {/* Profile Button */}
+                <button
+                  onClick={toggleProfileDropdown}
+                  className="flex items-center gap-2 p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 group"
                 >
-                  <div className="border-b-2 border-gray-400">
-                    <h1 className="text-sm md:text-[18px] font-bold pt-2 text-center">
-                      {user.displayName}
-                    </h1>
-                    <p className="text-xs md:text-sm text-black pb-2 text-center dark:text-white">
-                      {user.email}
-                    </p>
+                  <div className="relative">
+                    <img
+                      className="w-10 h-10 md:w-12 md:h-12 rounded-full border-2 border-gray-200 dark:border-gray-600 group-hover:border-[#FF5A3C] transition-colors duration-300"
+                      src={user.photoURL}
+                      alt="Profile"
+                    />
+                    <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 border-2 border-white dark:border-gray-800 rounded-full"></div>
                   </div>
-                  <div>
-                    <button
-                      className=" btn bg-[#FF5A3C] text-white w-full text-[12px] md:text-[15px] my-1 md:my-2"
-                      onClick={handleLogOut}
-                    >
-                      Logout
-                    </button>
+                  <FaChevronDown 
+                    className={`text-gray-500 dark:text-gray-400 text-sm transition-transform duration-300 hidden md:block ${
+                      profileDropdownOpen ? 'rotate-180' : ''
+                    }`} 
+                  />
+                </button>
+
+                {profileDropdownOpen && (
+                  <div className="absolute right-0 top-full mt-2 w-80 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 z-50 overflow-hidden">
+                    <div className="bg-linear-to-r from-[#FF5A3C] to-red-500 p-6 text-white">
+                      <div className="flex items-center gap-4">
+                        <div className="relative">
+                          <img
+                            className="w-20 h-10 rounded-full border-4 border-white/20"
+                            src={user.photoURL}
+                            alt="Profile"
+                          />
+                          <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-400 border-2 border-white rounded-full"></div>
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-lg font-bold truncate">
+                            {user.displayName || 'User'}
+                          </h3>
+                          <p className="text-white/80 text-sm truncate">
+                            {user.email}
+                          </p>
+                          <div className="flex items-center gap-1 mt-1">
+                            <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                            <span className="text-xs text-white/80">Online</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="p-2">
+                      <Link
+                        to="/profile"
+                        onClick={closeProfileDropdown}
+                        className="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300 group"
+                      >
+                        <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                          <FaUser className="text-sm" />
+                        </div>
+                        <div className="flex-1">
+                          <div className="font-semibold text-gray-900 dark:text-white">Profile</div>
+                          <div className="text-xs text-gray-500 dark:text-gray-400">View and edit profile</div>
+                        </div>
+                      </Link>
+
+                      <Link
+                        to="/dashboard"
+                        onClick={closeProfileDropdown}
+                        className="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300 group"
+                      >
+                        <div className="w-10 h-10 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                          <FaTachometerAlt className="text-sm" />
+                        </div>
+                        <div className="flex-1">
+                          <div className="font-semibold text-gray-900 dark:text-white">Dashboard</div>
+                          <div className="text-xs text-gray-500 dark:text-gray-400">Manage your properties</div>
+                        </div>
+                      </Link>
+                      <button
+                        onClick={() => {
+                          closeProfileDropdown();
+                          handleLogOut();
+                        }}
+                        className="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-red-50 dark:hover:bg-red-900/20 transition-all duration-300 group"
+                      >
+                        <div className="w-10 h-10 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                          <FaSignOutAlt className="text-sm" />
+                        </div>
+                        <div className="flex-1 text-left">
+                          <div className="font-semibold text-red-600 dark:text-red-400">Sign Out</div>
+                          <div className="text-xs text-red-500 dark:text-red-500">Logout from account</div>
+                        </div>
+                      </button>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             </>
           ) : (

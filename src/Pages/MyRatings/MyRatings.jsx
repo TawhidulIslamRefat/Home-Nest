@@ -24,7 +24,7 @@ const MyRatings = () => {
     return <Loading></Loading>;
   }
   return (
-    <div className=" w-[95%] md:w-11/12 mx-auto py-14 mt-16 overflow-x-hidden">
+    <div className=" w-[95%] md:w-10/12 px-0 md:px-3 mx-auto py-14 mt-16 overflow-x-hidden">
       <title>My-Rating</title>
       <h1 className="text-xl sm:text-2xl md:text-4xl font-bold text-center mb-10" data-aos="fade-down"
      data-aos-easing="linear">

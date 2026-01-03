@@ -3,12 +3,11 @@ import { FaLocationDot } from 'react-icons/fa6';
 import { Link } from 'react-router';
 
 const PropertyCard = ({property}) => {
-   //  console.log(property);
     const {_id,propertyName,category,price,location,description,image} = property;
     return (
-        <div className=' rounded-lg shadow-sm bg-white dark:bg-[#1D232A] dark:border hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between'>
+        <div className=' rounded-lg shadow-sm bg-white dark:bg-[#1D232A] dark:border hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between h-full'>
          <div className='relative'>
-            <img src={image} alt={propertyName} className='w-full h-52 sm:h-64 md:h-72 lg:h-80 object-cover' />
+            <img src={image} alt={propertyName} className='w-full rounded-t-lg h-52 sm:h-64 md:h-42 lg:h-60 object-cover' />
             <span className={`absolute top-3 left-3 text-xs sm:text-sm px-3 md:px-4 py-1.5 rounded-sm text-white text-[16px] font-medium ${category === "Sale" ? "bg-[#FF5A3C]" : category === "Rent" ? "bg-green-500" : "bg-blue-300"}`}>
              For {category}
             </span>

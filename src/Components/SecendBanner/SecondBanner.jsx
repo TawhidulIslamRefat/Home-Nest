@@ -17,7 +17,7 @@ const SecondBanner = ({setSearchText,setSort}) => {
   return (
     <div className="bg-[#F8F7F7] dark:bg-[#23272b] relative py-10 sm:py-15 md:py-20"
     >
-      <div className="w-10/12 mx-auto grid lg:grid-cols-2 items-center gap-10 py-15">
+      <div className="w-10/12 mx-auto grid pl-5 pr-10 lg:grid-cols-2 items-center gap-10 py-15">
         <div className="space-y-6">
           <h1 className=" text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold leading-tight" data-aos="fade-right" >
             Easy way to find <br /> a perfect{" "}

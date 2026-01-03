@@ -15,8 +15,8 @@ import { GiDuration } from "react-icons/gi";
 
 const Banner = () => {
   return (
-    <div className="relative mt-6 mx-7">
-      <div className=" w-[98%]  lg:w-11/12 mx-auto">
+    <div className="relative mt-6">
+      <div className=" w-[98%]  lg:w-10/12 mx-auto">
         <Swiper
           modules={[Navigation,Autoplay]}
           spaceBetween={30}
@@ -62,7 +62,7 @@ const Banner = () => {
           <SwiperSlide>
             <div className="flex flex-col sm:flex-row-reverse items-center justify-around">
               <div className="text-right mr-5 mb-4">
-                <p className="flex  items-center justify-end mr-3 gap-1 text-sm md:text-xl font-semibold text-right" data-aos="fade-right">
+                <p className="flex  items-center justify-end  gap-1 text-sm md:text-xl font-semibold text-right" data-aos="fade-right">
                   <span className="text-[#FF5A3C] text-lg md:text-2xl">
                     <AiFillHome />
                   </span>{" "}

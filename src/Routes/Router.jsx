@@ -12,6 +12,9 @@ import UpdateProperty from "../Pages/UpdateProperty/UpdateProperty";
 import ErrorPage from "../Components/Error/ErrorPage";
 import ForgetPassword from "../Pages/ForgetPassword/ForgetPassword";
 import PrivateRoute from "./PriveteRoute/PriveteRoute";
+import ContactUs from "../Pages/ContactUs/ContactUs";
+import About from "../Pages/About/About";
+import Profile from "../Pages/Profile/Profile";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +24,11 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home></Home> },
       { path: "/all-properties", Component: AllProperties },
+      { path: "/contact-us", Component: ContactUs },
+      { path: "/about", Component: About },
+      { path: "/profile", element: <PrivateRoute>
+        <Profile></Profile>
+      </PrivateRoute> },
       {
         path: "/add-property",
         element: (
@@ -40,9 +48,7 @@ const router = createBrowserRouter([
       {
         path: "/properties/:id",
         element: (
-          <PrivateRoute>
             <PropertyDetails></PropertyDetails>
-          </PrivateRoute>
         ),
       },
       {

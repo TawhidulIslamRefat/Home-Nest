@@ -15,7 +15,7 @@ const handleSubmit = (e) =>{
   return (
     <div>
       <div className='bg-[#F2F6F7] dark:bg-[#23272B] py-5'>
-       <div className=' w-[95%] lg:w-11/12 mx-auto flex flex-col sm:flex-row items-center justify-center gap-5 lg:gap-30'>
+       <div className=' w-[95%] lg:w-10/12 mx-auto flex flex-col sm:flex-row items-center justify-center gap-5 lg:gap-30'>
           <div className='flex-1' data-aos="fade-down">
          <img
          className='h-50 lg:h-100 ml-0 md:ml-20'

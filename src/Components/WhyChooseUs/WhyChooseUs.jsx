@@ -4,7 +4,7 @@ import { FaHandshake, FaWallet } from "react-icons/fa6";
 
 const WhyChooseUs = () => {
   return (
-    <div className="w-11/12 mx-auto my-10 md:my-20">
+    <div className="w-10/12 mx-auto my-10 md:my-20 px-2">
       <div className="center mb-12 text-center" data-aos="fade-up">
         <span className="bg-[#FFEBE7] text-center text-[#FF5A3C] text-xs md:text-xl p-1 rounded-xl">
           Choose Us

@@ -2,6 +2,7 @@ import React, { use } from "react";
 import { AuthContext } from "../../Contexts/AuthContext";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
+import { FaHome, FaMapMarkerAlt, FaDollarSign, FaImage, FaUser, FaEnvelope, FaPlus } from "react-icons/fa";
 
 const AddProperty = () => {
   const { user } = use(AuthContext);
@@ -43,121 +44,160 @@ const AddProperty = () => {
       });
   };
   return (
-    <div className=" dark:bg-[#1D232A] py-14 min-h-screen mt-20">
+    <div className="bg-gradient-to-br from-gray-50 via-white to-orange-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-14 min-h-screen mt-20">
       <title>Add-Product</title>
-      <div className=" w-[97%] lg:w-3xl mx-auto bg-white dark:bg-[#23272B] shadow-xl rounded-xl p-5 md:p-10 border ">
-        <h1 className="text-center text-xl sm:-text-2xl md:text-4xl font-bold mb-8">
-          Add New <span className="text-[#FF5A3C]">Property</span>
-        </h1>
+      <div className="w-[97%] lg:w-3xl mx-auto bg-white dark:bg-gray-800 shadow-2xl rounded-2xl p-5 md:p-10 border border-gray-200 dark:border-gray-700 relative overflow-hidden">
+        {/* Decorative Elements */}
+        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#FF5A3C]/10 to-red-500/10 rounded-full -translate-y-16 translate-x-16"></div>
+        <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-orange-400/10 to-[#FF5A3C]/10 rounded-full translate-y-12 -translate-x-12"></div>
+        
+        {/* Header */}
+        <div className="text-center mb-8 relative">
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#FF5A3C] to-red-500 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">
+            <FaPlus />
+            New Listing
+          </div>
+          <h1 className="text-xl sm:text-2xl md:text-4xl font-bold bg-gradient-to-r from-gray-900 via-[#FF5A3C] to-red-600 bg-clip-text text-transparent dark:from-white dark:via-orange-400 dark:to-red-400">
+            Add New <span className="text-[#FF5A3C]">Property</span>
+          </h1>
+          <p className="text-gray-600 dark:text-gray-300 mt-2">Fill in the details to list your property</p>
+        </div>
 
-        <form onSubmit={handleAddProperty} className="w-full">
-          <div>
-            <label className="block font-semibold mb-1 text-sm">
-              {" "}
+        <form onSubmit={handleAddProperty} className="w-full space-y-6">
+          {/* Property Name */}
+          <div className="relative">
+            <label className="flex items-center gap-2 font-semibold mb-3 text-sm text-gray-700 dark:text-gray-300">
+              <FaHome className="text-[#FF5A3C]" />
               Property Name
             </label>
             <input
               type="text"
               name="propertyName"
-              className="input input-bordered w-full"
+              className="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-[#FF5A3C] focus:ring-2 focus:ring-[#FF5A3C]/20 transition-all duration-300"
               placeholder="Enter property name"
               required
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 my-5">
-            <div>
-              <label className="block font-semibold mb-1 text-sm">
-                {" "}
+          {/* Category and Price */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="relative">
+              <label className="flex items-center gap-2 font-semibold mb-3 text-sm text-gray-700 dark:text-gray-300">
+                <div className="w-4 h-4 bg-gradient-to-r from-[#FF5A3C] to-red-500 rounded"></div>
                 Category
               </label>
               <select
                 name="category"
-                className="select select-bordered w-full"
+                className="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:border-[#FF5A3C] focus:ring-2 focus:ring-[#FF5A3C]/20 transition-all duration-300"
                 required
               >
-                <option disabled selected>
+                <option disabled selected className="text-gray-500">
                   Select Category
                 </option>
-                <option>Rent</option>
-                <option>Sale</option>
-                <option>Commercial</option>
-                <option>Land</option>
+                <option value="Rent">🏠 For Rent</option>
+                <option value="Sale">🏡 For Sale</option>
+                <option value="Commercial">🏢 Commercial</option>
+                <option value="Land">🌍 Land</option>
               </select>
             </div>
-            <div>
-              <label className="block font-semibold mb-1 text-sm">
-                {" "}
+            <div className="relative">
+              <label className="flex items-center gap-2 font-semibold mb-3 text-sm text-gray-700 dark:text-gray-300">
+                <FaDollarSign className="text-[#FF5A3C]" />
                 Price (USD)
               </label>
               <input
                 type="number"
                 name="price"
-                className="input input-bordered w-full"
+                className="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-[#FF5A3C] focus:ring-2 focus:ring-[#FF5A3C]/20 transition-all duration-300"
                 placeholder="e.g 15000"
                 required
               />
             </div>
           </div>
-          <div>
-            <label className="block font-semibold mb-1 text-sm">
-              {" "}
+
+          {/* Location */}
+          <div className="relative">
+            <label className="flex items-center gap-2 font-semibold mb-3 text-sm text-gray-700 dark:text-gray-300">
+              <FaMapMarkerAlt className="text-[#FF5A3C]" />
               Location
             </label>
             <input
               type="text"
               name="location"
-              className="input input-bordered w-full"
+              className="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-[#FF5A3C] focus:ring-2 focus:ring-[#FF5A3C]/20 transition-all duration-300"
               placeholder="City / Area / Address"
               required
             />
           </div>
-          <div>
-            <label className="block font-semibold my-5 text-sm">
-              Description{" "}
+
+          {/* Description */}
+          <div className="relative">
+            <label className="flex items-center gap-2 font-semibold mb-3 text-sm text-gray-700 dark:text-gray-300">
+              <div className="w-4 h-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded"></div>
+              Description
             </label>
             <textarea
               name="description"
-              className="textarea textarea-bordered w-full"
+              className="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-[#FF5A3C] focus:ring-2 focus:ring-[#FF5A3C]/20 transition-all duration-300 resize-none"
               rows="4"
-              placeholder="White details about the property..."
+              placeholder="Write details about the property..."
               required
             ></textarea>
           </div>
-          <div>
-            <label className="block font-semibold mb-1 mt-4 text-sm">
-              {" "}
+
+          {/* Image URL */}
+          <div className="relative">
+            <label className="flex items-center gap-2 font-semibold mb-3 text-sm text-gray-700 dark:text-gray-300">
+              <FaImage className="text-[#FF5A3C]" />
               Image URL
             </label>
             <input
               type="text"
               name="image"
-              className="input input-bordered w-full"
+              className="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-[#FF5A3C] focus:ring-2 focus:ring-[#FF5A3C]/20 transition-all duration-300"
               placeholder="Enter image url"
               required
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 my-5">
-            <input
-              type="text"
-              value={user?.displayName}
-              className="input input-bordered w-full bg-gray-100  dark:bg-[#1D232A]"
-              readOnly
-            />
-            <input
-              type="email"
-              value={user?.email}
-              className="input input-bordered w-full bg-gray-100 dark:bg-[#1D232A]"
-              readOnly
-            />
+          {/* User Info */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="relative">
+              <label className="flex items-center gap-2 font-semibold mb-3 text-sm text-gray-700 dark:text-gray-300">
+                <FaUser className="text-[#FF5A3C]" />
+                Your Name
+              </label>
+              <input
+                type="text"
+                value={user?.displayName}
+                className="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-600 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-300 cursor-not-allowed"
+                readOnly
+              />
+            </div>
+            <div className="relative">
+              <label className="flex items-center gap-2 font-semibold mb-3 text-sm text-gray-700 dark:text-gray-300">
+                <FaEnvelope className="text-[#FF5A3C]" />
+                Your Email
+              </label>
+              <input
+                type="email"
+                value={user?.email}
+                className="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-600 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-300 cursor-not-allowed"
+                readOnly
+              />
+            </div>
           </div>
-          <button
-            type="submit"
-            className="btn w-full bg-[#FF5A3C] hover:bg-[#e24a30] text-white text-sm sm:text-lg py-1.5 sm:py-3"
-          >
-            Add Property
-          </button>
+
+          {/* Submit Button */}
+          <div className="pt-4">
+            <button
+              type="submit"
+              className="w-full bg-gradient-to-r from-[#FF5A3C] to-red-500 hover:from-red-600 hover:to-red-700 text-white font-semibold py-4 px-6 rounded-xl text-sm sm:text-lg transition-all duration-300 transform hover:scale-[1.02] hover:shadow-lg flex items-center justify-center gap-2"
+            >
+              <FaPlus />
+              Add Property
+            </button>
+          </div>
         </form>
       </div>
     </div>

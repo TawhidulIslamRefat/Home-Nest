@@ -66,7 +66,7 @@ const AllProperties = () => {
             </h1>
           </>
         ) : (
-          <div className="w-[90%] sm:w-[97%] md:w-11/12 lg:w-[95%] xl:w-11/12 mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 2xl:grid-cols-4 lg:grid-cols-3 gap-7 md:gap-10 lg:gap-5 xl:gap-10 lg: my-10 md:my-20">
+          <div className="w-[90%] sm:w-[97%] md:w-10/12 lg:w-[95%] xl:w-10/12 mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 2xl:grid-cols-4 lg:grid-cols-3 gap-7 md:gap-10 lg:gap-5 xl:gap-10 lg: my-10 md:my-20 px-0 md:px-2">
             {properties.map((property) => (
               <AllPropertiesCard
                 key={property._id}

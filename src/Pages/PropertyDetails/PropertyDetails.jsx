@@ -3,6 +3,19 @@ import { useParams } from "react-router";
 import { AuthContext } from "../../Contexts/AuthContext";
 import Swal from "sweetalert2";
 import Loading from "../../Components/Loading/Loading";
+import { 
+  FaMapMarkerAlt, 
+  FaCalendarAlt, 
+  FaStar, 
+  FaBed, 
+  FaBath, 
+  FaCar, 
+  FaRulerCombined,
+  FaChevronLeft,
+  FaChevronRight,
+  FaCheck,
+  FaTimes
+} from "react-icons/fa";
 
 const PropertyDetails = () => {
   const { id } = useParams();
@@ -10,6 +23,36 @@ const PropertyDetails = () => {
   const [property, setProperty] = useState({});
   const [rating, setRating] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [activeSection, setActiveSection] = useState('overview');
+  const [relatedProperties, setRelatedProperties] = useState([]);
+
+  // Simple multiple images array
+  const propertyImages = [
+    property.image,
+    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80"
+  ].filter(Boolean);
+
+  // Simple property specs
+  const propertySpecs = {
+    bedrooms: 3,
+    bathrooms: 2,
+    parking: 2,
+    area: 1200,
+    yearBuilt: 2020,
+    furnished: 'Semi-furnished',
+    amenities: ['WiFi', 'Swimming Pool', 'Gym', 'Security', 'Parking']
+  };
+
+  // Simple rules
+  const propertyRules = [
+    { rule: 'No smoking', allowed: false },
+    { rule: 'Pets allowed', allowed: true },
+    { rule: 'Parties allowed', allowed: false },
+    { rule: 'Visitors allowed', allowed: true }
+  ];
 
   useEffect(() => {
     setLoading(true);
@@ -20,10 +63,17 @@ const PropertyDetails = () => {
       fetch(`https://home-nest-server-psi.vercel.app/ratings/${id}`).then(
         (res) => res.json()
       ),
+      fetch(`https://home-nest-server-psi.vercel.app/properties`).then(
+        (res) => res.json()
+      ),
     ])
-      .then(([propertyData, ratingData]) => {
+      .then(([propertyData, ratingData, allProperties]) => {
         setProperty(propertyData);
         setRating(ratingData);
+        const related = allProperties
+          .filter(p => p.category === propertyData.category && p._id !== id)
+          .slice(0, 3);
+        setRelatedProperties(related);
       })
       .finally(() => setLoading(false));
   }, [id]);
@@ -56,125 +106,424 @@ const PropertyDetails = () => {
       });
   };
 
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % propertyImages.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + propertyImages.length) % propertyImages.length);
+  };
+
+  const getAverageRating = () => {
+    if (rating.length === 0) return 0;
+    const sum = rating.reduce((acc, r) => acc + parseInt(r.rating), 0);
+    return (sum / rating.length).toFixed(1);
+  };
+
   if (loading) {
     return <Loading />;
   }
-  return (
-    <div className="max-w-5xl mx-auto py-10 mt-10 md:mt-25">
-      <title>{property.propertyName}</title>
-      <img
-        src={property.image}
-        alt=""
-        className="w-[99%] mx-auto lg:mx-0 lg:w-full h-[350px] md:h-[450px] rounded-md object-cover"
-      />
-      <h1 className="text-xl sm:text-2xl md:text-4xl font-bold mt-6 ml-1 ">
-        {property.propertyName}
-      </h1>
-      <p className="text-gray-600 my-5 loading-7 font-medium dark:text-gray-300 text-xs sm:text-sm mx-2">
-        {property.description}
-      </p>
-      <div className="flex gap-10 text-sm sm:text-lg font-semibold mt-4 p-4 sm:p-2 md:p-2 lg:p-0">
-        <div className="flex flex-col sm:flex-row gap-10">
-          <p> 📍 {property.location}</p>
-          <p className="font-bold"> 💰 ${property.price}</p>
-        </div>
-        <div className="flex flex-col sm:flex-row gap-10">
-          <p> 🏷 Category : {property.category}</p>
-          <p>
-            {" "}
-            Posted On : {new Date(property.postedDate).toLocaleDateString()}
-          </p>
-        </div>
-      </div>
-      <div className="flex items-center gap-2 my-5 p-4">
-        <div>
-          <img
-            className="w-10 h-10 sm:w-15 sm:h-15 rounded-full"
-            src={property.postedBy?.photo}
-            alt="user photo"
-          />
-        </div>
-        <div className="">
-          <p className="text-sm sm:text-lg font-medium text-gray-600 dark:text-gray-300">
-            {property.postedBy?.name}
-          </p>
-          <p className=" text-xs sm:text-sm text-gray-600 dark:text-gray-300">
-            {property.postedBy?.email}
-          </p>
-        </div>
-      </div>
-      <h3 className="text-xl sm:text-3xl font-bold mb-4 text-center">
-        Ratings & Reviews
-      </h3>
 
-      {rating.length === 0 ? (
-        <p className="text-sm sm:text-xl text-gray-600 text-center xl:text-left">
-          No reviews yet.
-        </p>
-      ) : (
-        <div className="space-y-4">
-          {rating.slice(0, 3).map((r, index) => (
-            <div
-              key={index}
-              className="border w-[98%] mx-auto lg:mx-0 lg:w-full p-4 rounded-lg bg-white dark:bg-[#23272B] shadow-md flex gap-4 items-start"
-            >
-              <div>
-                <img
-                  src={r.userPhoto}
-                  alt={r.userName}
-                  className="w-12 h-12 rounded-full"
-                />
-              </div>
-              <div>
-                <p className="font-semibold text-sm sm:text-lg">{r.userName}</p>
-                <p className="text-[#FF5A3C] font-semibold text-sm sm:text-lg sm:font-bold">
-                  {" "}
-                  ⭐ {r.rating}/5
-                </p>
-                <p className="text-gray-700 dark:text-gray-300 text-xs sm:text-sm">
-                  {r.review.slice(0, 70) + "..."}
-                </p>
-                <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-300">
-                  Date : {new Date(r.date).toLocaleDateString()}
-                </p>
-              </div>
+  return (
+    <div className="max-w-6xl mx-auto py-6 px-4 mt-10 md:mt-20">
+      <title>{property.propertyName}</title>
+      
+      {/* Image Gallery */}
+      <div className="mb-8">
+        <div className="relative h-[400px] rounded-xl overflow-hidden">
+          <img
+            src={propertyImages[currentImageIndex]}
+            alt={property.propertyName}
+            className="w-full h-full object-cover"
+          />
+          
+          {propertyImages.length > 1 && (
+            <>
+              <button
+                onClick={prevImage}
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70"
+              >
+                <FaChevronLeft />
+              </button>
+              <button
+                onClick={nextImage}
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70"
+              >
+                <FaChevronRight />
+              </button>
+            </>
+          )}
+
+          <div className="absolute bottom-4 left-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
+            {currentImageIndex + 1} / {propertyImages.length}
+          </div>
+        </div>
+
+        {/* Simple Thumbnails */}
+        {propertyImages.length > 1 && (
+          <div className="flex gap-2 mt-4">
+            {propertyImages.map((img, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentImageIndex(index)}
+                className={`w-16 h-16 rounded-lg overflow-hidden border-2 ${
+                  index === currentImageIndex ? 'border-[#FF5A3C]' : 'border-gray-300'
+                }`}
+              >
+                <img src={img} alt={`View ${index + 1}`} className="w-full h-full object-cover" />
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Property Header */}
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">
+          {property.propertyName}
+        </h1>
+        
+        <div className="flex flex-wrap items-center gap-4 mb-4">
+          <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300">
+            <FaMapMarkerAlt className="text-[#FF5A3C]" />
+            <span>{property.location}</span>
+          </div>
+          <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300">
+            <FaCalendarAlt className="text-[#FF5A3C]" />
+            <span>{new Date(property.postedDate).toLocaleDateString()}</span>
+          </div>
+          {rating.length > 0 && (
+            <div className="flex items-center gap-2">
+              <FaStar className="text-yellow-400" />
+              <span className="font-semibold">{getAverageRating()}</span>
+              <span className="text-gray-500">({rating.length} reviews)</span>
             </div>
+          )}
+        </div>
+
+        <div className="flex items-center gap-4 mb-6">
+          <div className="text-2xl font-bold text-[#FF5A3C]">
+            ${property.price?.toLocaleString()}
+          </div>
+          <div className="bg-[#FF5A3C] text-white px-3 py-1 rounded-full text-sm">
+            {property.category}
+          </div>
+        </div>
+
+        {/* Owner Info */}
+        <div className="flex items-center gap-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+          <img
+            src={property.postedBy?.photo}
+            alt={property.postedBy?.name}
+            className="w-12 h-12 rounded-full"
+          />
+          <div>
+            <h3 className="font-semibold text-gray-900 dark:text-white">
+              {property.postedBy?.name}
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300 text-sm">
+              {property.postedBy?.email}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Simple Navigation */}
+      <div className="mb-8">
+        <div className="flex gap-4 border-b border-gray-200 dark:border-gray-700">
+          {[
+            { id: 'overview', label: 'Overview' },
+            { id: 'specs', label: 'Specifications' },
+            { id: 'rules', label: 'Rules' },
+            { id: 'reviews', label: 'Reviews' },
+            { id: 'related', label: 'Similar Properties' }
+          ].map((section) => (
+            <button
+              key={section.id}
+              onClick={() => setActiveSection(section.id)}
+              className={`py-3 px-4 border-b-2 font-medium ${
+                activeSection === section.id
+                  ? 'border-[#FF5A3C] text-[#FF5A3C]'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400'
+              }`}
+            >
+              {section.label}
+            </button>
           ))}
         </div>
-      )}
+      </div>
 
-      <div className="mt-12 w-[97%] xl:w-full mx-auto sm:mx-auto bg-white rounded-lg shadow-xl border-2 dark:bg-[#23272B] border-gray-300 p-10">
-        <form onSubmit={handleAddRating} className="space-y-5">
-          <h3 className="text-xl sm:text-2xl font-bold mb-4 text-center">
-            Rate This Propert
-          </h3>
-          <label className="text-sm sm:text-xl font-semibold">
-            Choose Rating
-          </label>
-          <select
-            name="rating"
-            className="select select-bordered w-full my-3 text-xs sm:text-sm"
-            required
-          >
-            <option value="">Choose Rating</option>
-            <option value="5">⭐ 5 (Excellent)</option>
-            <option value="4">⭐ 4 (Good)</option>
-            <option value="3">⭐ 3 (Avarage)</option>
-            <option value="2">⭐ 2 (Poor)</option>
-            <option value="1">⭐ 1 (Vary Bad)</option>
-          </select>
-          <label className="text-sm sm:text-xl font-semibold">Review Now</label>
-          <textarea
-            name="review"
-            className="textarea textarea-bordered w-full mt-4 text-xs sm:text-sm"
-            placeholder="write a short review ..."
-            required
-          ></textarea>
+      {/* Content Sections */}
+      <div className="mb-8">
+        {/* Overview Section */}
+        {activeSection === 'overview' && (
+          <div className="space-y-6">
+            <div>
+              <h2 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Description</h2>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                {property.description}
+              </p>
+            </div>
 
-          <button className="btn bg-[#FF5A3C] hover:bg-[#e24a30] text-white w-full text-xs sm:text-sm ">
-            Submit Review
-          </button>
-        </form>
+            <div>
+              <h3 className="text-lg font-bold mb-4 text-gray-900 dark:text-white">Key Features</h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                  <FaBed className="text-[#FF5A3C] text-xl" />
+                  <div>
+                    <div className="font-semibold">{propertySpecs.bedrooms}</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-300">Bedrooms</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                  <FaBath className="text-[#FF5A3C] text-xl" />
+                  <div>
+                    <div className="font-semibold">{propertySpecs.bathrooms}</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-300">Bathrooms</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                  <FaCar className="text-[#FF5A3C] text-xl" />
+                  <div>
+                    <div className="font-semibold">{propertySpecs.parking}</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-300">Parking</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                  <FaRulerCombined className="text-[#FF5A3C] text-xl" />
+                  <div>
+                    <div className="font-semibold">{propertySpecs.area}</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-300">Sq Ft</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-bold mb-4 text-gray-900 dark:text-white">Amenities</h3>
+              <div className="flex flex-wrap gap-2">
+                {propertySpecs.amenities.map((amenity, index) => (
+                  <span key={index} className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full text-sm">
+                    {amenity}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Specifications Section */}
+        {activeSection === 'specs' && (
+          <div>
+            <h2 className="text-xl font-bold mb-6 text-gray-900 dark:text-white">Property Specifications</h2>
+            <div className="space-y-4">
+              <div className="flex justify-between py-3 border-b border-gray-200 dark:border-gray-700">
+                <span className="text-gray-600 dark:text-gray-300">Bedrooms</span>
+                <span className="font-semibold">{propertySpecs.bedrooms}</span>
+              </div>
+              <div className="flex justify-between py-3 border-b border-gray-200 dark:border-gray-700">
+                <span className="text-gray-600 dark:text-gray-300">Bathrooms</span>
+                <span className="font-semibold">{propertySpecs.bathrooms}</span>
+              </div>
+              <div className="flex justify-between py-3 border-b border-gray-200 dark:border-gray-700">
+                <span className="text-gray-600 dark:text-gray-300">Area</span>
+                <span className="font-semibold">{propertySpecs.area} sq ft</span>
+              </div>
+              <div className="flex justify-between py-3 border-b border-gray-200 dark:border-gray-700">
+                <span className="text-gray-600 dark:text-gray-300">Parking</span>
+                <span className="font-semibold">{propertySpecs.parking} spaces</span>
+              </div>
+              <div className="flex justify-between py-3 border-b border-gray-200 dark:border-gray-700">
+                <span className="text-gray-600 dark:text-gray-300">Year Built</span>
+                <span className="font-semibold">{propertySpecs.yearBuilt}</span>
+              </div>
+              <div className="flex justify-between py-3 border-b border-gray-200 dark:border-gray-700">
+                <span className="text-gray-600 dark:text-gray-300">Furnished</span>
+                <span className="font-semibold">{propertySpecs.furnished}</span>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Rules Section */}
+        {activeSection === 'rules' && (
+          <div>
+            <h2 className="text-xl font-bold mb-6 text-gray-900 dark:text-white">Property Rules</h2>
+            <div className="space-y-3">
+              {propertyRules.map((rule, index) => (
+                <div key={index} className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                  <span className="text-gray-700 dark:text-gray-300">{rule.rule}</span>
+                  <div className="flex items-center gap-2">
+                    {rule.allowed ? (
+                      <>
+                        <FaCheck className="text-green-500" />
+                        <span className="text-green-500 font-semibold">Allowed</span>
+                      </>
+                    ) : (
+                      <>
+                        <FaTimes className="text-red-500" />
+                        <span className="text-red-500 font-semibold">Not Allowed</span>
+                      </>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Reviews Section */}
+        {activeSection === 'reviews' && (
+          <div>
+            <h2 className="text-xl font-bold mb-6 text-gray-900 dark:text-white">Reviews & Ratings</h2>
+            
+            {rating.length > 0 ? (
+              <div className="space-y-6">
+                {/* Simple Rating Summary */}
+                <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 text-center">
+                  <div className="text-3xl font-bold text-[#FF5A3C] mb-2">{getAverageRating()}</div>
+                  <div className="flex justify-center mb-2">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <FaStar
+                        key={star}
+                        className={`${
+                          star <= Math.round(getAverageRating()) ? 'text-yellow-400' : 'text-gray-300'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                  <div className="text-gray-600 dark:text-gray-300">{rating.length} reviews</div>
+                </div>
+
+                {/* Reviews List */}
+                <div className="space-y-4">
+                  {rating.map((review, index) => (
+                    <div key={index} className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                      <div className="flex items-start gap-4">
+                        <img
+                          src={review.userPhoto}
+                          alt={review.userName}
+                          className="w-12 h-12 rounded-full"
+                        />
+                        <div className="flex-1">
+                          <div className="flex items-center gap-3 mb-2">
+                            <h4 className="font-semibold">{review.userName}</h4>
+                            <div className="flex items-center gap-1">
+                              {[1, 2, 3, 4, 5].map((star) => (
+                                <FaStar
+                                  key={star}
+                                  className={`text-sm ${
+                                    star <= parseInt(review.rating) ? 'text-yellow-400' : 'text-gray-300'
+                                  }`}
+                                />
+                              ))}
+                            </div>
+                            <span className="text-sm text-gray-500">
+                              {new Date(review.date).toLocaleDateString()}
+                            </span>
+                          </div>
+                          <p className="text-gray-700 dark:text-gray-300">{review.review}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <div className="text-center py-12">
+                <FaStar className="text-4xl text-gray-400 mx-auto mb-4" />
+                <h3 className="text-lg font-semibold mb-2">No reviews yet</h3>
+                <p className="text-gray-600 dark:text-gray-300">Be the first to review this property!</p>
+              </div>
+            )}
+
+            {/* Simple Review Form */}
+            {user && (
+              <div className="mt-8 bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <form onSubmit={handleAddRating} className="space-y-4">
+                  <h3 className="text-lg font-bold">Write a Review</h3>
+                  
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Rating</label>
+                    <select
+                      name="rating"
+                      className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700"
+                      required
+                    >
+                      <option value="">Choose Rating</option>
+                      <option value="5">⭐ 5 (Excellent)</option>
+                      <option value="4">⭐ 4 (Good)</option>
+                      <option value="3">⭐ 3 (Average)</option>
+                      <option value="2">⭐ 2 (Poor)</option>
+                      <option value="1">⭐ 1 (Very Bad)</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Review</label>
+                    <textarea
+                      name="review"
+                      rows="4"
+                      className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700"
+                      placeholder="Share your experience..."
+                      required
+                    ></textarea>
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full bg-[#FF5A3C] text-white py-3 rounded-xl font-semibold hover:bg-red-600"
+                  >
+                    Submit Review
+                  </button>
+                </form>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Related Properties Section */}
+        {activeSection === 'related' && (
+          <div>
+            <h2 className="text-xl font-bold mb-6 text-gray-900 dark:text-white">Similar Properties</h2>
+            {relatedProperties.length > 0 ? (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {relatedProperties.map((relatedProperty) => (
+                  <div key={relatedProperty._id} className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700">
+                    <img
+                      src={relatedProperty.image}
+                      alt={relatedProperty.propertyName}
+                      className="w-full h-48 object-cover"
+                    />
+                    <div className="p-4">
+                      <h3 className="font-semibold text-lg mb-2 line-clamp-2">
+                        {relatedProperty.propertyName}
+                      </h3>
+                      <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300 mb-2">
+                        <FaMapMarkerAlt className="text-[#FF5A3C] text-sm" />
+                        <span className="text-sm">{relatedProperty.location}</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="text-lg font-bold text-[#FF5A3C]">
+                          ${relatedProperty.price?.toLocaleString()}
+                        </div>
+                        <div className="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded-full text-xs">
+                          {relatedProperty.category}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-12">
+                <FaMapMarkerAlt className="text-4xl text-gray-400 mx-auto mb-4" />
+                <h3 className="text-lg font-semibold mb-2">No similar properties found</h3>
+                <p className="text-gray-600 dark:text-gray-300">Check back later for more properties.</p>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import iamge3 from "../../assets/23.png";
 import { FaLongArrowAltRight } from "react-icons/fa";
 const OurService = () => {
   return (
-    <div className=" w-[85%] sm:w-[90%] 2xl:w-9/12 mx-auto ">
+    <div className=" w-[85%] sm:w-[90%] 2xl:w-10/12 mx-auto px-3 ">
       <div className="flex items-center justify-center">
         <span className=" bg-[#FFEBE7] text-center text-[#FF5A3C] text-sm md:text-xl p-1.5 rounded-2xl" data-aos="fade-up">
           Our Service

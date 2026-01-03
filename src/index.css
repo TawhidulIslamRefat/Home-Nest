@@ -29,3 +29,172 @@
   margin-left: 3px;
   margin-right: 3px;
 }
+
+/* Contact Us Page Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+/* Smooth scrolling for better UX */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom focus styles for better accessibility */
+.input:focus,
+.textarea:focus {
+  box-shadow: 0 0 0 3px rgba(255, 90, 60, 0.1);
+}
+
+/* Enhanced button hover effects */
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Card hover animations */
+.card:hover {
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+}
+
+/* Loading animation for form submission */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+/* Simple Testimonials Styles */
+.testimonials-swiper .swiper-pagination {
+  bottom: 0;
+}
+
+.testimonial-bullet {
+  background: #d1d5db !important;
+  opacity: 1 !important;
+  width: 12px !important;
+  height: 12px !important;
+  margin: 0 6px !important;
+  transition: all 0.3s ease !important;
+}
+
+.testimonial-bullet-active {
+  background: #FF5A3C !important;
+  transform: scale(1.2) !important;
+}
+
+.testimonials-swiper .swiper-slide {
+  height: auto;
+  display: flex;
+}
+
+.testimonials-swiper .swiper-slide > div {
+  width: 100%;
+}
+/* Enhanced Profile Dropdown Styles */
+.profile-dropdown-enter {
+  opacity: 0;
+  transform: translateY(-10px) scale(0.95);
+}
+
+.profile-dropdown-enter-active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: opacity 200ms, transform 200ms;
+}
+
+.profile-dropdown-exit {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.profile-dropdown-exit-active {
+  opacity: 0;
+  transform: translateY(-10px) scale(0.95);
+  transition: opacity 150ms, transform 150ms;
+}
+
+/* Profile avatar online indicator animation */
+@keyframes pulse-green {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.online-indicator {
+  animation: pulse-green 2s ease-in-out infinite;
+}
+
+/* Profile dropdown menu item hover effects */
+.profile-menu-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-menu-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 90, 60, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.profile-menu-item:hover::before {
+  left: 100%;
+}
+
+/* Notification badge animation */
+@keyframes bounce-notification {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-3px);
+  }
+  60% {
+    transform: translateY(-2px);
+  }
+}
+
+.notification-badge {
+  animation: bounce-notification 2s ease-in-out infinite;
+}
+
+/* Profile dropdown shadow enhancement */
+.profile-dropdown-shadow {
+  box-shadow: 
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+.dark .profile-dropdown-shadow {
+  box-shadow: 
+    0 20px 25px -5px rgba(0, 0, 0, 0.4),
+    0 10px 10px -5px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+}

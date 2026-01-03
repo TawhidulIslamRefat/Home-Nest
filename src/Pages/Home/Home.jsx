@@ -5,13 +5,18 @@ import Loading from "../../Components/Loading/Loading";
 import ConsultSection from "../../Components/Consult/Consult";
 import PropertyCard from "../../Components/LatestProperties/LatestProperties";
 import LatestProperties from "../../Components/LatestProperties/LatestProperties";
+import FAQ from "../../Components/FAQ/FAQ";
+import Highlights from "../../Components/Categories/Categories";
+import Testimonials from "../../Components/Testimonials/Testimonials";
+import Blogs from "../../Components/Blogs/Blogs";
+import Categories from "../../Components/Categories/Categories";
 
 
 
 const Home = () => {
   return (
     <div>
-      <section className="bg-[#F2F6F7] dark:bg-[#23272b] py-15 md:py-20 mt-3">
+      <section className="bg-[#F2F6F7] dark:bg-[#23272b] py-15 md:py-20">
         <title>Home</title>
         <Banner></Banner>
       </section>
@@ -23,7 +28,19 @@ const Home = () => {
         ></LatestProperties>
       </section>
       <section>
+        <Categories></Categories>
+      </section>
+      <section>
+        <Testimonials></Testimonials>
+      </section>
+      <section>
+        <Blogs></Blogs>
+      </section>
+      <section>
         <WhyChooseUs></WhyChooseUs>
+      </section>
+      <section>
+        <FAQ></FAQ>
       </section>
       <section>
         <ConsultSection></ConsultSection>
