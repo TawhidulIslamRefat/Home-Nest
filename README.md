@@ -1,24 +1,24 @@
 # 🏠 HomeNest
 
-**HomeNest** — A modern real estate listing platform where users can explore, post, and manage property listings for rent or sale with ease.
+**HomeNest** is a modern real estate listing platform where users can explore, post, and manage property listings for rent or sale with ease.
 
-🔗 **Live Site URL:** [https://home-nest-1.netlify.app/](https://home-nest-1.netlify.app/)
+🔗 **Live Site:** [https://home-nest-1.netlify.app/](https://home-nest-1.netlify.app/)
 
 ---
 
 ## 🌟 Features
 
-- 🏡 **Property Listings:** Users can browse all available properties for rent, sale, commercial spaces, or land.  
-- 👤 **User Authentication:** Secure registration and login system using Firebase Authentication (Email & Google Login).  
-- 🧾 **Add & Manage Properties:** Logged-in users can add new listings, update or delete their own properties.  
+- 🏡 **Property Listings:** Browse all available properties for rent, sale, commercial spaces, or land.  
+- 👤 **User Authentication:** Secure registration and login using Firebase Auth (Email & Google Login).  
+- 🧾 **Add & Manage Properties:** Logged-in users can add, update, or delete their own property listings.  
 - ⭐ **Ratings & Reviews:** Users can rate and review properties they have visited or rented.  
-- 🌙 **Dark/Light Theme:** Elegant UI with light and dark mode toggle for better user experience.  
-- 🔍 **Search & Sort:** Easily find properties by name and sort them by price or posting date.  
-- 📱 **Fully Responsive:** Optimized design for mobile, tablet, and desktop devices.  
+- 🌙 **Dark/Light Theme:** Elegant UI with toggle for light and dark modes.  
+- 🔍 **Search & Sort:** Find properties by name, price, or posting date.  
+- 📱 **Fully Responsive:** Optimized for mobile, tablet, and desktop screens.  
 
 ---
 
-## 🧠 Technologies Used
+## 🧰 Technologies Used
 
 - **Frontend:** React, React Router, Tailwind CSS, DaisyUI, Swiper.js, Lottie Animation  
 - **Backend:** Node.js, Express.js, MongoDB  
@@ -27,15 +27,28 @@
 
 ---
 
-## 💾 Clone & Run Locally
+## 🖼️ Screenshots
 
-Follow these steps to run **HomeNest** on your local machine:
+<p align="center">
+  <img src="https://i.ibb.co/cc56kVvf/Screenshot-2025-12-31-123016.png" width="48%" />
+  <img src="https://i.ibb.co/GQ4gqGhZ/Screenshot-2025-12-31-123043.png" width="48%" />
+</p>
+<p align="center">
+  <img src="https://i.ibb.co/Mkk8yNFR/Screenshot-2025-12-31-123157.png" width="48%" />
+  <img src="https://i.ibb.co/tp2jWVMF/Screenshot-2025-12-31-123338.png" width="48%" />
+</p>
+
+---
+
+## 💾 Installation & Run Locally
+
+Follow these steps to run **HomeNest** locally:
 
 ```bash
 # Clone the repository
 git clone https://github.com/TawhidulIslamRefat/HomeNest.git
 
-# Navigate into the project folder
+# Navigate to the project folder
 cd HomeNest
 
 # Install dependencies for frontend
