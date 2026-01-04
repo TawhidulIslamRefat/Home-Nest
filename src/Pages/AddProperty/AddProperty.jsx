@@ -44,27 +44,24 @@ const AddProperty = () => {
       });
   };
   return (
-    <div className="bg-gradient-to-br from-gray-50 via-white to-orange-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-14 min-h-screen mt-20">
+    <div className="bg-linear-to-br from-gray-50 via-white to-orange-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-10 min-h-screen ">
       <title>Add-Product</title>
       <div className="w-[97%] lg:w-3xl mx-auto bg-white dark:bg-gray-800 shadow-2xl rounded-2xl p-5 md:p-10 border border-gray-200 dark:border-gray-700 relative overflow-hidden">
-        {/* Decorative Elements */}
-        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#FF5A3C]/10 to-red-500/10 rounded-full -translate-y-16 translate-x-16"></div>
-        <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-orange-400/10 to-[#FF5A3C]/10 rounded-full translate-y-12 -translate-x-12"></div>
+        <div className="absolute top-0 right-0 w-32 h-32 bg-linear-to-br from-[#FF5A3C]/10 to-red-500/10 rounded-full -translate-y-16 translate-x-16"></div>
+        <div className="absolute bottom-0 left-0 w-24 h-24 bg-linear-to-tr from-orange-400/10 to-[#FF5A3C]/10 rounded-full translate-y-12 -translate-x-12"></div>
         
-        {/* Header */}
         <div className="text-center mb-8 relative">
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#FF5A3C] to-red-500 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">
+          <div className="inline-flex items-center gap-2 bg-linear-to-r from-[#FF5A3C] to-red-500 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">
             <FaPlus />
             New Listing
           </div>
-          <h1 className="text-xl sm:text-2xl md:text-4xl font-bold bg-gradient-to-r from-gray-900 via-[#FF5A3C] to-red-600 bg-clip-text text-transparent dark:from-white dark:via-orange-400 dark:to-red-400">
+          <h1 className="text-xl sm:text-2xl md:text-4xl font-bold bg-linear-to-r from-gray-900 via-[#FF5A3C] to-red-600 bg-clip-text text-transparent dark:from-white dark:via-orange-400 dark:to-red-400">
             Add New <span className="text-[#FF5A3C]">Property</span>
           </h1>
           <p className="text-gray-600 dark:text-gray-300 mt-2">Fill in the details to list your property</p>
         </div>
 
         <form onSubmit={handleAddProperty} className="w-full space-y-6">
-          {/* Property Name */}
           <div className="relative">
             <label className="flex items-center gap-2 font-semibold mb-3 text-sm text-gray-700 dark:text-gray-300">
               <FaHome className="text-[#FF5A3C]" />
@@ -79,11 +76,10 @@ const AddProperty = () => {
             />
           </div>
 
-          {/* Category and Price */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="relative">
               <label className="flex items-center gap-2 font-semibold mb-3 text-sm text-gray-700 dark:text-gray-300">
-                <div className="w-4 h-4 bg-gradient-to-r from-[#FF5A3C] to-red-500 rounded"></div>
+                <div className="w-4 h-4 bg-linear-to-r from-[#FF5A3C] to-red-500 rounded"></div>
                 Category
               </label>
               <select
@@ -115,7 +111,6 @@ const AddProperty = () => {
             </div>
           </div>
 
-          {/* Location */}
           <div className="relative">
             <label className="flex items-center gap-2 font-semibold mb-3 text-sm text-gray-700 dark:text-gray-300">
               <FaMapMarkerAlt className="text-[#FF5A3C]" />
@@ -130,10 +125,9 @@ const AddProperty = () => {
             />
           </div>
 
-          {/* Description */}
           <div className="relative">
             <label className="flex items-center gap-2 font-semibold mb-3 text-sm text-gray-700 dark:text-gray-300">
-              <div className="w-4 h-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded"></div>
+              <div className="w-4 h-4 bg-linear-to-r from-blue-500 to-purple-500 rounded"></div>
               Description
             </label>
             <textarea
@@ -145,7 +139,6 @@ const AddProperty = () => {
             ></textarea>
           </div>
 
-          {/* Image URL */}
           <div className="relative">
             <label className="flex items-center gap-2 font-semibold mb-3 text-sm text-gray-700 dark:text-gray-300">
               <FaImage className="text-[#FF5A3C]" />
@@ -160,7 +153,6 @@ const AddProperty = () => {
             />
           </div>
 
-          {/* User Info */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="relative">
               <label className="flex items-center gap-2 font-semibold mb-3 text-sm text-gray-700 dark:text-gray-300">
@@ -188,11 +180,10 @@ const AddProperty = () => {
             </div>
           </div>
 
-          {/* Submit Button */}
           <div className="pt-4">
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-[#FF5A3C] to-red-500 hover:from-red-600 hover:to-red-700 text-white font-semibold py-4 px-6 rounded-xl text-sm sm:text-lg transition-all duration-300 transform hover:scale-[1.02] hover:shadow-lg flex items-center justify-center gap-2"
+              className="w-full bg-linear-to-r from-[#FF5A3C] to-red-500 hover:from-red-600 hover:to-red-700 text-white font-semibold py-4 px-6 rounded-xl text-sm sm:text-lg transition-all duration-300 transform hover:scale-[1.02] hover:shadow-lg flex items-center justify-center gap-2"
             >
               <FaPlus />
               Add Property

@@ -27,7 +27,6 @@ const PropertyDetails = () => {
   const [activeSection, setActiveSection] = useState('overview');
   const [relatedProperties, setRelatedProperties] = useState([]);
 
-  // Simple multiple images array
   const propertyImages = [
     property.image,
     "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80",
@@ -35,7 +34,6 @@ const PropertyDetails = () => {
     "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80"
   ].filter(Boolean);
 
-  // Simple property specs
   const propertySpecs = {
     bedrooms: 3,
     bathrooms: 2,
@@ -46,7 +44,6 @@ const PropertyDetails = () => {
     amenities: ['WiFi', 'Swimming Pool', 'Gym', 'Security', 'Parking']
   };
 
-  // Simple rules
   const propertyRules = [
     { rule: 'No smoking', allowed: false },
     { rule: 'Pets allowed', allowed: true },
@@ -127,8 +124,7 @@ const PropertyDetails = () => {
   return (
     <div className="max-w-6xl mx-auto py-6 px-4 mt-10 md:mt-20">
       <title>{property.propertyName}</title>
-      
-      {/* Image Gallery */}
+
       <div className="mb-8">
         <div className="relative h-[400px] rounded-xl overflow-hidden">
           <img
@@ -159,7 +155,6 @@ const PropertyDetails = () => {
           </div>
         </div>
 
-        {/* Simple Thumbnails */}
         {propertyImages.length > 1 && (
           <div className="flex gap-2 mt-4">
             {propertyImages.map((img, index) => (
@@ -177,7 +172,6 @@ const PropertyDetails = () => {
         )}
       </div>
 
-      {/* Property Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">
           {property.propertyName}
@@ -210,7 +204,6 @@ const PropertyDetails = () => {
           </div>
         </div>
 
-        {/* Owner Info */}
         <div className="flex items-center gap-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
           <img
             src={property.postedBy?.photo}
@@ -228,7 +221,6 @@ const PropertyDetails = () => {
         </div>
       </div>
 
-      {/* Simple Navigation */}
       <div className="mb-8">
         <div className="flex gap-4 border-b border-gray-200 dark:border-gray-700">
           {[
@@ -253,9 +245,7 @@ const PropertyDetails = () => {
         </div>
       </div>
 
-      {/* Content Sections */}
       <div className="mb-8">
-        {/* Overview Section */}
         {activeSection === 'overview' && (
           <div className="space-y-6">
             <div>
@@ -312,7 +302,6 @@ const PropertyDetails = () => {
           </div>
         )}
 
-        {/* Specifications Section */}
         {activeSection === 'specs' && (
           <div>
             <h2 className="text-xl font-bold mb-6 text-gray-900 dark:text-white">Property Specifications</h2>
@@ -345,7 +334,6 @@ const PropertyDetails = () => {
           </div>
         )}
 
-        {/* Rules Section */}
         {activeSection === 'rules' && (
           <div>
             <h2 className="text-xl font-bold mb-6 text-gray-900 dark:text-white">Property Rules</h2>
@@ -372,14 +360,12 @@ const PropertyDetails = () => {
           </div>
         )}
 
-        {/* Reviews Section */}
         {activeSection === 'reviews' && (
           <div>
             <h2 className="text-xl font-bold mb-6 text-gray-900 dark:text-white">Reviews & Ratings</h2>
             
             {rating.length > 0 ? (
               <div className="space-y-6">
-                {/* Simple Rating Summary */}
                 <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 text-center">
                   <div className="text-3xl font-bold text-[#FF5A3C] mb-2">{getAverageRating()}</div>
                   <div className="flex justify-center mb-2">
@@ -395,7 +381,6 @@ const PropertyDetails = () => {
                   <div className="text-gray-600 dark:text-gray-300">{rating.length} reviews</div>
                 </div>
 
-                {/* Reviews List */}
                 <div className="space-y-4">
                   {rating.map((review, index) => (
                     <div key={index} className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
@@ -437,7 +422,7 @@ const PropertyDetails = () => {
               </div>
             )}
 
-            {/* Simple Review Form */}
+
             {user && (
               <div className="mt-8 bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
                 <form onSubmit={handleAddRating} className="space-y-4">
@@ -482,7 +467,7 @@ const PropertyDetails = () => {
           </div>
         )}
 
-        {/* Related Properties Section */}
+
         {activeSection === 'related' && (
           <div>
             <h2 className="text-xl font-bold mb-6 text-gray-900 dark:text-white">Similar Properties</h2>

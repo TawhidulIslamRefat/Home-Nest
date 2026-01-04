@@ -2,7 +2,6 @@ import { FaLocationDot } from "react-icons/fa6";
 import { Link } from "react-router";
 
 const AllPropertiesCard = ({ property }) => {
-  // console.log(property);
   const {
     _id,
     propertyName,
@@ -10,6 +9,7 @@ const AllPropertiesCard = ({ property }) => {
     price,
     location,
     image,
+    description,
     postedBy,
   } = property;
   return (
@@ -19,7 +19,7 @@ const AllPropertiesCard = ({ property }) => {
           <img
             src={image}
             alt={propertyName}
-            className="w-100 h-70 object-cover"
+            className="w-100 h-55 object-cover rounded-t-lg"
           />
           <span
             className={`absolute top-3 left-3 text-xs px-2 md:px-4 py-1.5 rounded-sm text-white md:text-[16px] font-medium ${
@@ -37,6 +37,9 @@ const AllPropertiesCard = ({ property }) => {
           <h2 className="text-lg md:text-2xl font-semibold text-[#1f1f1f] dark:text-white">
             {propertyName}
           </h2>
+          <p className='text-gray-500 text-xs md:text-[15px] leading-6 font-medium dark:text-gray-300'>
+         {description?.slice(0,60)}...
+          </p>
           <div className="flex items-center justify-between gap-2 text-gray-600 text-sm font-medium">
             <div className="flex items-center gap-2 text-gray-600 text-xs sm:text-sm font-medium">
               <FaLocationDot className="text-[#FF5A3C]" />

@@ -57,6 +57,7 @@ const Footer = () => {
           <a href="/all-properties" className="link link-hover text-white text-sm md:text-[16px] block">All Properties</a>
           <a href="/contact-us" className="link link-hover text-white text-sm md:text-[16px] block">Contact us</a>
           <a href="/faq" className="link link-hover text-white text-sm md:text-[16px] block">FAQ</a>
+          <a href="/terms" className="link link-hover text-white text-sm md:text-[16px] block">Privacy & Terms</a>
         </nav>
 
         <nav className="space-y-1 md:space-y-2 col-span-1">

@@ -23,7 +23,7 @@ const categories = [
     title: "Commercial",
     count: 50,
     image:
-      "https://thumbs.dreamstime.com/b/beautiful-new-home-exterior-clear-evening-provides-setting-luxurious-34711767.jpg",
+      "https://www.ampquartz.com/wp-content/uploads/2025/03/Choosing-The-Perfect-Home-1024x512.jpeg.webp",
     link: "/properties/commercial",
   },
   {

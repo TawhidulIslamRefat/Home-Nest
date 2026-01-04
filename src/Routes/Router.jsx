@@ -15,6 +15,10 @@ import PrivateRoute from "./PriveteRoute/PriveteRoute";
 import ContactUs from "../Pages/ContactUs/ContactUs";
 import About from "../Pages/About/About";
 import Profile from "../Pages/Profile/Profile";
+import Terms from "../Pages/Privacy/Terms/Privacy/Terms";
+import Blog from "../Pages/Blog/Blog";
+import DashboardLayout from "../Layout/DashboardLayout";
+import Overview from "../Pages/Dashboard/Overview";
 
 const router = createBrowserRouter([
   {
@@ -26,37 +30,15 @@ const router = createBrowserRouter([
       { path: "/all-properties", Component: AllProperties },
       { path: "/contact-us", Component: ContactUs },
       { path: "/about", Component: About },
+      { path: "/blog", Component: Blog },
+      { path: "/terms", Component: Terms },
       { path: "/profile", element: <PrivateRoute>
         <Profile></Profile>
       </PrivateRoute> },
       {
-        path: "/add-property",
-        element: (
-          <PrivateRoute>
-            <AddProperty></AddProperty>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/my-property",
-        element: (
-          <PrivateRoute>
-            <MyProperties></MyProperties>
-          </PrivateRoute>
-        ),
-      },
-      {
         path: "/properties/:id",
         element: (
             <PropertyDetails></PropertyDetails>
-        ),
-      },
-      {
-        path: "/my-ratings",
-        element: (
-          <PrivateRoute>
-            <MyRatings></MyRatings>
-          </PrivateRoute>
         ),
       },
       { path: "/properties/:id/edit", Component: UpdateProperty },
@@ -64,6 +46,35 @@ const router = createBrowserRouter([
       { path: "/login", Component: Login },
       { path: "/register", Component: Register },
     ],
+  },
+  {
+   path:'/dashboard',
+   element:<PrivateRoute>
+    <DashboardLayout></DashboardLayout>
+   </PrivateRoute>,
+   errorElement:<ErrorPage></ErrorPage>,
+   children:[
+    {
+      index:true,
+      element:<Overview></Overview>
+    },
+    {
+     path:"/dashboard/my-property",
+     element:<MyProperties></MyProperties>
+    },
+    {
+     path:"/dashboard//my-ratings",
+     element:<MyRatings></MyRatings>
+    },
+    {
+     path:"/dashboard/add-property",
+     element:<AddProperty></AddProperty>
+    },
+    {
+      index:true,
+      element:<Overview></Overview>
+    }
+   ]
   },
    {
     path: "/*",

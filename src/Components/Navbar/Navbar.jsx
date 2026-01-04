@@ -22,24 +22,17 @@ const Navbar = () => {
       <li className="text-[16px] font-medium">
         <NavLink to="/all-properties">All Properties</NavLink>
       </li>
-      {user && (
-        <>
-          <li className="text-[16px] font-medium">
-            <NavLink to="/add-property">Add Properties</NavLink>
-          </li>
-          <li className="text-[16px] font-medium">
-            <NavLink to="/my-property">My Properties</NavLink>
-          </li>
-          <li className="text-[16px] font-medium">
-            <NavLink to="/my-ratings">My Ratings</NavLink>
-          </li>
-        </>
-      )}
+      <li className="text-[16px] font-medium">
+        <NavLink to="/blog">Blog</NavLink>
+      </li>
       <li className="text-[16px] font-medium">
         <NavLink to="/about">About</NavLink>
       </li>
       <li className="text-[16px] font-medium">
         <NavLink to="/contact-us">Contact US</NavLink>
+      </li>
+      <li className="text-[16px] font-medium">
+        <NavLink to="/terms">Privacy & Terms</NavLink>
       </li>
     </>
   );
@@ -49,7 +42,6 @@ const Navbar = () => {
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -168,7 +160,6 @@ const Navbar = () => {
           {user && user.photoURL ? (
             <>
               <div className="relative" ref={dropdownRef}>
-                {/* Profile Button */}
                 <button
                   onClick={toggleProfileDropdown}
                   className="flex items-center gap-2 p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 group"
