@@ -23,7 +23,7 @@ const Register = () => {
           createAt: new Date(),
         };
 
-        fetch("https://home-nest-server-psi.vercel.app/users", {
+        fetch("https://home-server-two.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -47,7 +47,7 @@ const Register = () => {
           icon: "error",
           title: "Oops...",
           text: "Something went wrong!",
-          confirmButtonColor:"#FF5A3C",
+          confirmButtonColor: "#FF5A3C",
           error,
         });
       });
@@ -91,7 +91,7 @@ const Register = () => {
             createAt: new Date(),
           };
 
-          fetch("https://home-nest-server-psi.vercel.app/users", {
+          fetch("https://home-server-two.vercel.app/users", {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -116,7 +116,7 @@ const Register = () => {
           icon: "error",
           title: "Oops...",
           text: "Something went wrong!",
-          confirmButtonColor:"#FF5A3C",
+          confirmButtonColor: "#FF5A3C",
           error,
         });
       });

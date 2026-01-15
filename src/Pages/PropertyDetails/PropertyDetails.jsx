@@ -3,18 +3,18 @@ import { useParams } from "react-router";
 import { AuthContext } from "../../Contexts/AuthContext";
 import Swal from "sweetalert2";
 import Loading from "../../Components/Loading/Loading";
-import { 
-  FaMapMarkerAlt, 
-  FaCalendarAlt, 
-  FaStar, 
-  FaBed, 
-  FaBath, 
-  FaCar, 
+import {
+  FaMapMarkerAlt,
+  FaCalendarAlt,
+  FaStar,
+  FaBed,
+  FaBath,
+  FaCar,
   FaRulerCombined,
   FaChevronLeft,
   FaChevronRight,
   FaCheck,
-  FaTimes
+  FaTimes,
 } from "react-icons/fa";
 
 const PropertyDetails = () => {
@@ -24,14 +24,14 @@ const PropertyDetails = () => {
   const [rating, setRating] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [activeSection, setActiveSection] = useState('overview');
+  const [activeSection, setActiveSection] = useState("overview");
   const [relatedProperties, setRelatedProperties] = useState([]);
 
   const propertyImages = [
     property.image,
     "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80",
     "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80"
+    "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80",
   ].filter(Boolean);
 
   const propertySpecs = {
@@ -40,35 +40,35 @@ const PropertyDetails = () => {
     parking: 2,
     area: 1200,
     yearBuilt: 2020,
-    furnished: 'Semi-furnished',
-    amenities: ['WiFi', 'Swimming Pool', 'Gym', 'Security', 'Parking']
+    furnished: "Semi-furnished",
+    amenities: ["WiFi", "Swimming Pool", "Gym", "Security", "Parking"],
   };
 
   const propertyRules = [
-    { rule: 'No smoking', allowed: false },
-    { rule: 'Pets allowed', allowed: true },
-    { rule: 'Parties allowed', allowed: false },
-    { rule: 'Visitors allowed', allowed: true }
+    { rule: "No smoking", allowed: false },
+    { rule: "Pets allowed", allowed: true },
+    { rule: "Parties allowed", allowed: false },
+    { rule: "Visitors allowed", allowed: true },
   ];
 
   useEffect(() => {
     setLoading(true);
     Promise.all([
-      fetch(`https://home-nest-server-psi.vercel.app/properties/${id}`).then(
-        (res) => res.json()
+      fetch(`https://home-server-two.vercel.app/properties/${id}`).then((res) =>
+        res.json()
       ),
-      fetch(`https://home-nest-server-psi.vercel.app/ratings/${id}`).then(
-        (res) => res.json()
+      fetch(`https://home-server-two.vercel.app/ratings/${id}`).then((res) =>
+        res.json()
       ),
-      fetch(`https://home-nest-server-psi.vercel.app/properties`).then(
-        (res) => res.json()
+      fetch(`https://home-server-two.vercel.app/properties`).then((res) =>
+        res.json()
       ),
     ])
       .then(([propertyData, ratingData, allProperties]) => {
         setProperty(propertyData);
         setRating(ratingData);
         const related = allProperties
-          .filter(p => p.category === propertyData.category && p._id !== id)
+          .filter((p) => p.category === propertyData.category && p._id !== id)
           .slice(0, 3);
         setRelatedProperties(related);
       })
@@ -88,7 +88,7 @@ const PropertyDetails = () => {
       review: e.target.review.value,
       date: new Date().toISOString(),
     };
-    fetch("https://home-nest-server-psi.vercel.app/ratings", {
+    fetch("https://home-server-two.vercel.app/ratings", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -108,7 +108,9 @@ const PropertyDetails = () => {
   };
 
   const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + propertyImages.length) % propertyImages.length);
+    setCurrentImageIndex(
+      (prev) => (prev - 1 + propertyImages.length) % propertyImages.length
+    );
   };
 
   const getAverageRating = () => {
@@ -132,7 +134,7 @@ const PropertyDetails = () => {
             alt={property.propertyName}
             className="w-full h-full object-cover"
           />
-          
+
           {propertyImages.length > 1 && (
             <>
               <button
@@ -162,10 +164,16 @@ const PropertyDetails = () => {
                 key={index}
                 onClick={() => setCurrentImageIndex(index)}
                 className={`w-16 h-16 rounded-lg overflow-hidden border-2 ${
-                  index === currentImageIndex ? 'border-[#FF5A3C]' : 'border-gray-300'
+                  index === currentImageIndex
+                    ? "border-[#FF5A3C]"
+                    : "border-gray-300"
                 }`}
               >
-                <img src={img} alt={`View ${index + 1}`} className="w-full h-full object-cover" />
+                <img
+                  src={img}
+                  alt={`View ${index + 1}`}
+                  className="w-full h-full object-cover"
+                />
               </button>
             ))}
           </div>
@@ -176,7 +184,7 @@ const PropertyDetails = () => {
         <h1 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">
           {property.propertyName}
         </h1>
-        
+
         <div className="flex flex-wrap items-center gap-4 mb-4">
           <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300">
             <FaMapMarkerAlt className="text-[#FF5A3C]" />
@@ -224,19 +232,19 @@ const PropertyDetails = () => {
       <div className="mb-8">
         <div className="flex gap-4 border-b border-gray-200 dark:border-gray-700">
           {[
-            { id: 'overview', label: 'Overview' },
-            { id: 'specs', label: 'Specifications' },
-            { id: 'rules', label: 'Rules' },
-            { id: 'reviews', label: 'Reviews' },
-            { id: 'related', label: 'Similar Properties' }
+            { id: "overview", label: "Overview" },
+            { id: "specs", label: "Specifications" },
+            { id: "rules", label: "Rules" },
+            { id: "reviews", label: "Reviews" },
+            { id: "related", label: "Similar Properties" },
           ].map((section) => (
             <button
               key={section.id}
               onClick={() => setActiveSection(section.id)}
               className={`py-3 px-4 border-b-2 font-medium ${
                 activeSection === section.id
-                  ? 'border-[#FF5A3C] text-[#FF5A3C]'
-                  : 'border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400'
+                  ? "border-[#FF5A3C] text-[#FF5A3C]"
+                  : "border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400"
               }`}
             >
               {section.label}
@@ -246,54 +254,75 @@ const PropertyDetails = () => {
       </div>
 
       <div className="mb-8">
-        {activeSection === 'overview' && (
+        {activeSection === "overview" && (
           <div className="space-y-6">
             <div>
-              <h2 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Description</h2>
+              <h2 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">
+                Description
+              </h2>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                 {property.description}
               </p>
             </div>
 
             <div>
-              <h3 className="text-lg font-bold mb-4 text-gray-900 dark:text-white">Key Features</h3>
+              <h3 className="text-lg font-bold mb-4 text-gray-900 dark:text-white">
+                Key Features
+              </h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
                   <FaBed className="text-[#FF5A3C] text-xl" />
                   <div>
-                    <div className="font-semibold">{propertySpecs.bedrooms}</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-300">Bedrooms</div>
+                    <div className="font-semibold">
+                      {propertySpecs.bedrooms}
+                    </div>
+                    <div className="text-sm text-gray-600 dark:text-gray-300">
+                      Bedrooms
+                    </div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
                   <FaBath className="text-[#FF5A3C] text-xl" />
                   <div>
-                    <div className="font-semibold">{propertySpecs.bathrooms}</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-300">Bathrooms</div>
+                    <div className="font-semibold">
+                      {propertySpecs.bathrooms}
+                    </div>
+                    <div className="text-sm text-gray-600 dark:text-gray-300">
+                      Bathrooms
+                    </div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
                   <FaCar className="text-[#FF5A3C] text-xl" />
                   <div>
                     <div className="font-semibold">{propertySpecs.parking}</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-300">Parking</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-300">
+                      Parking
+                    </div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
                   <FaRulerCombined className="text-[#FF5A3C] text-xl" />
                   <div>
                     <div className="font-semibold">{propertySpecs.area}</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-300">Sq Ft</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-300">
+                      Sq Ft
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
             <div>
-              <h3 className="text-lg font-bold mb-4 text-gray-900 dark:text-white">Amenities</h3>
+              <h3 className="text-lg font-bold mb-4 text-gray-900 dark:text-white">
+                Amenities
+              </h3>
               <div className="flex flex-wrap gap-2">
                 {propertySpecs.amenities.map((amenity, index) => (
-                  <span key={index} className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full text-sm">
+                  <span
+                    key={index}
+                    className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full text-sm"
+                  >
                     {amenity}
                   </span>
                 ))}
@@ -302,55 +331,82 @@ const PropertyDetails = () => {
           </div>
         )}
 
-        {activeSection === 'specs' && (
+        {activeSection === "specs" && (
           <div>
-            <h2 className="text-xl font-bold mb-6 text-gray-900 dark:text-white">Property Specifications</h2>
+            <h2 className="text-xl font-bold mb-6 text-gray-900 dark:text-white">
+              Property Specifications
+            </h2>
             <div className="space-y-4">
               <div className="flex justify-between py-3 border-b border-gray-200 dark:border-gray-700">
-                <span className="text-gray-600 dark:text-gray-300">Bedrooms</span>
+                <span className="text-gray-600 dark:text-gray-300">
+                  Bedrooms
+                </span>
                 <span className="font-semibold">{propertySpecs.bedrooms}</span>
               </div>
               <div className="flex justify-between py-3 border-b border-gray-200 dark:border-gray-700">
-                <span className="text-gray-600 dark:text-gray-300">Bathrooms</span>
+                <span className="text-gray-600 dark:text-gray-300">
+                  Bathrooms
+                </span>
                 <span className="font-semibold">{propertySpecs.bathrooms}</span>
               </div>
               <div className="flex justify-between py-3 border-b border-gray-200 dark:border-gray-700">
                 <span className="text-gray-600 dark:text-gray-300">Area</span>
-                <span className="font-semibold">{propertySpecs.area} sq ft</span>
+                <span className="font-semibold">
+                  {propertySpecs.area} sq ft
+                </span>
               </div>
               <div className="flex justify-between py-3 border-b border-gray-200 dark:border-gray-700">
-                <span className="text-gray-600 dark:text-gray-300">Parking</span>
-                <span className="font-semibold">{propertySpecs.parking} spaces</span>
+                <span className="text-gray-600 dark:text-gray-300">
+                  Parking
+                </span>
+                <span className="font-semibold">
+                  {propertySpecs.parking} spaces
+                </span>
               </div>
               <div className="flex justify-between py-3 border-b border-gray-200 dark:border-gray-700">
-                <span className="text-gray-600 dark:text-gray-300">Year Built</span>
+                <span className="text-gray-600 dark:text-gray-300">
+                  Year Built
+                </span>
                 <span className="font-semibold">{propertySpecs.yearBuilt}</span>
               </div>
               <div className="flex justify-between py-3 border-b border-gray-200 dark:border-gray-700">
-                <span className="text-gray-600 dark:text-gray-300">Furnished</span>
+                <span className="text-gray-600 dark:text-gray-300">
+                  Furnished
+                </span>
                 <span className="font-semibold">{propertySpecs.furnished}</span>
               </div>
             </div>
           </div>
         )}
 
-        {activeSection === 'rules' && (
+        {activeSection === "rules" && (
           <div>
-            <h2 className="text-xl font-bold mb-6 text-gray-900 dark:text-white">Property Rules</h2>
+            <h2 className="text-xl font-bold mb-6 text-gray-900 dark:text-white">
+              Property Rules
+            </h2>
             <div className="space-y-3">
               {propertyRules.map((rule, index) => (
-                <div key={index} className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
-                  <span className="text-gray-700 dark:text-gray-300">{rule.rule}</span>
+                <div
+                  key={index}
+                  className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800 rounded-xl"
+                >
+                  <span className="text-gray-700 dark:text-gray-300">
+                    {rule.rule}
+                  </span>
                   <div className="flex items-center gap-2">
                     {rule.allowed ? (
                       <>
                         <FaCheck className="text-green-500" />
-                        <span className="text-green-500 font-semibold">Allowed</span>
+                        <span className="text-green-500 font-semibold">
+                          Allowed
+                        </span>
                       </>
                     ) : (
                       <>
                         <FaTimes className="text-red-500" />
-                        <span className="text-red-500 font-semibold">Not Allowed</span>
+                        <span className="text-red-500 font-semibold">
+                          Not Allowed
+                        </span>
                       </>
                     )}
                   </div>
@@ -360,30 +416,41 @@ const PropertyDetails = () => {
           </div>
         )}
 
-        {activeSection === 'reviews' && (
+        {activeSection === "reviews" && (
           <div>
-            <h2 className="text-xl font-bold mb-6 text-gray-900 dark:text-white">Reviews & Ratings</h2>
-            
+            <h2 className="text-xl font-bold mb-6 text-gray-900 dark:text-white">
+              Reviews & Ratings
+            </h2>
+
             {rating.length > 0 ? (
               <div className="space-y-6">
                 <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 text-center">
-                  <div className="text-3xl font-bold text-[#FF5A3C] mb-2">{getAverageRating()}</div>
+                  <div className="text-3xl font-bold text-[#FF5A3C] mb-2">
+                    {getAverageRating()}
+                  </div>
                   <div className="flex justify-center mb-2">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <FaStar
                         key={star}
                         className={`${
-                          star <= Math.round(getAverageRating()) ? 'text-yellow-400' : 'text-gray-300'
+                          star <= Math.round(getAverageRating())
+                            ? "text-yellow-400"
+                            : "text-gray-300"
                         }`}
                       />
                     ))}
                   </div>
-                  <div className="text-gray-600 dark:text-gray-300">{rating.length} reviews</div>
+                  <div className="text-gray-600 dark:text-gray-300">
+                    {rating.length} reviews
+                  </div>
                 </div>
 
                 <div className="space-y-4">
                   {rating.map((review, index) => (
-                    <div key={index} className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                    <div
+                      key={index}
+                      className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700"
+                    >
                       <div className="flex items-start gap-4">
                         <img
                           src={review.userPhoto}
@@ -398,7 +465,9 @@ const PropertyDetails = () => {
                                 <FaStar
                                   key={star}
                                   className={`text-sm ${
-                                    star <= parseInt(review.rating) ? 'text-yellow-400' : 'text-gray-300'
+                                    star <= parseInt(review.rating)
+                                      ? "text-yellow-400"
+                                      : "text-gray-300"
                                   }`}
                                 />
                               ))}
@@ -407,7 +476,9 @@ const PropertyDetails = () => {
                               {new Date(review.date).toLocaleDateString()}
                             </span>
                           </div>
-                          <p className="text-gray-700 dark:text-gray-300">{review.review}</p>
+                          <p className="text-gray-700 dark:text-gray-300">
+                            {review.review}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -418,18 +489,21 @@ const PropertyDetails = () => {
               <div className="text-center py-12">
                 <FaStar className="text-4xl text-gray-400 mx-auto mb-4" />
                 <h3 className="text-lg font-semibold mb-2">No reviews yet</h3>
-                <p className="text-gray-600 dark:text-gray-300">Be the first to review this property!</p>
+                <p className="text-gray-600 dark:text-gray-300">
+                  Be the first to review this property!
+                </p>
               </div>
             )}
-
 
             {user && (
               <div className="mt-8 bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
                 <form onSubmit={handleAddRating} className="space-y-4">
                   <h3 className="text-lg font-bold">Write a Review</h3>
-                  
+
                   <div>
-                    <label className="block text-sm font-medium mb-2">Rating</label>
+                    <label className="block text-sm font-medium mb-2">
+                      Rating
+                    </label>
                     <select
                       name="rating"
                       className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700"
@@ -445,7 +519,9 @@ const PropertyDetails = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2">Review</label>
+                    <label className="block text-sm font-medium mb-2">
+                      Review
+                    </label>
                     <textarea
                       name="review"
                       rows="4"
@@ -467,14 +543,18 @@ const PropertyDetails = () => {
           </div>
         )}
 
-
-        {activeSection === 'related' && (
+        {activeSection === "related" && (
           <div>
-            <h2 className="text-xl font-bold mb-6 text-gray-900 dark:text-white">Similar Properties</h2>
+            <h2 className="text-xl font-bold mb-6 text-gray-900 dark:text-white">
+              Similar Properties
+            </h2>
             {relatedProperties.length > 0 ? (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {relatedProperties.map((relatedProperty) => (
-                  <div key={relatedProperty._id} className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700">
+                  <div
+                    key={relatedProperty._id}
+                    className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700"
+                  >
                     <img
                       src={relatedProperty.image}
                       alt={relatedProperty.propertyName}
@@ -486,7 +566,9 @@ const PropertyDetails = () => {
                       </h3>
                       <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300 mb-2">
                         <FaMapMarkerAlt className="text-[#FF5A3C] text-sm" />
-                        <span className="text-sm">{relatedProperty.location}</span>
+                        <span className="text-sm">
+                          {relatedProperty.location}
+                        </span>
                       </div>
                       <div className="flex items-center justify-between">
                         <div className="text-lg font-bold text-[#FF5A3C]">
@@ -503,8 +585,12 @@ const PropertyDetails = () => {
             ) : (
               <div className="text-center py-12">
                 <FaMapMarkerAlt className="text-4xl text-gray-400 mx-auto mb-4" />
-                <h3 className="text-lg font-semibold mb-2">No similar properties found</h3>
-                <p className="text-gray-600 dark:text-gray-300">Check back later for more properties.</p>
+                <h3 className="text-lg font-semibold mb-2">
+                  No similar properties found
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300">
+                  Check back later for more properties.
+                </p>
               </div>
             )}
           </div>

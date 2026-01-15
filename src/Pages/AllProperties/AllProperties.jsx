@@ -6,19 +6,19 @@ import search from "../../../public/Searching.json";
 import { Link } from "react-router";
 import Loading from "../../Components/Loading/Loading";
 import Swal from "sweetalert2";
-import { 
-  FaSearch, 
-  FaFilter, 
-  FaSortAmountDown, 
-  FaSortAmountUp, 
-  FaMapMarkerAlt, 
-  FaDollarSign, 
-  FaHome, 
+import {
+  FaSearch,
+  FaFilter,
+  FaSortAmountDown,
+  FaSortAmountUp,
+  FaMapMarkerAlt,
+  FaDollarSign,
+  FaHome,
   FaCalendarAlt,
   FaStar,
   FaChevronLeft,
   FaChevronRight,
-  FaSpinner
+  FaSpinner,
 } from "react-icons/fa";
 
 const AllProperties = () => {
@@ -28,16 +28,16 @@ const AllProperties = () => {
   const [sort, setSort] = useState("");
   const [loading, setLoading] = useState(true);
   const [filterLoading, setFilterLoading] = useState(false);
-  const [showFilters, setShowFilters] = useState(false); 
-  
+  const [showFilters, setShowFilters] = useState(false);
+
   const [filters, setFilters] = useState({
-    category: '',
-    minPrice: '',
-    maxPrice: '',
-    location: '',
-    dateFrom: '',
-    dateTo: '',
-    rating: ''
+    category: "",
+    minPrice: "",
+    maxPrice: "",
+    location: "",
+    dateFrom: "",
+    dateTo: "",
+    rating: "",
   });
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -59,7 +59,7 @@ const AllProperties = () => {
           title: "Oops...",
           text: "Something went wrong!",
           error,
-          confirmButtonColor: "#FF5A3C"
+          confirmButtonColor: "#FF5A3C",
         })
       )
       .finally(() => setLoading(false));
@@ -68,66 +68,91 @@ const AllProperties = () => {
   useEffect(() => {
     const applyFiltersWithDelay = () => {
       setFilterLoading(true);
-      
+
       setTimeout(() => {
         let filtered = [...properties];
         if (searchText) {
-          filtered = filtered.filter(property =>
-            property.propertyName.toLowerCase().includes(searchText.toLowerCase()) ||
-            property.location.toLowerCase().includes(searchText.toLowerCase()) ||
-            property.description?.toLowerCase().includes(searchText.toLowerCase())
+          filtered = filtered.filter(
+            (property) =>
+              property.propertyName
+                .toLowerCase()
+                .includes(searchText.toLowerCase()) ||
+              property.location
+                .toLowerCase()
+                .includes(searchText.toLowerCase()) ||
+              property.description
+                ?.toLowerCase()
+                .includes(searchText.toLowerCase())
           );
         }
 
         if (filters.category) {
-          filtered = filtered.filter(property => property.category === filters.category);
+          filtered = filtered.filter(
+            (property) => property.category === filters.category
+          );
         }
 
         if (filters.minPrice) {
-          filtered = filtered.filter(property => property.price >= parseInt(filters.minPrice));
+          filtered = filtered.filter(
+            (property) => property.price >= parseInt(filters.minPrice)
+          );
         }
 
         if (filters.maxPrice) {
-          filtered = filtered.filter(property => property.price <= parseInt(filters.maxPrice));
+          filtered = filtered.filter(
+            (property) => property.price <= parseInt(filters.maxPrice)
+          );
         }
 
         if (filters.location) {
-          filtered = filtered.filter(property =>
-            property.location.toLowerCase().includes(filters.location.toLowerCase())
+          filtered = filtered.filter((property) =>
+            property.location
+              .toLowerCase()
+              .includes(filters.location.toLowerCase())
           );
         }
 
         if (filters.dateFrom) {
-          filtered = filtered.filter(property =>
-            new Date(property.postedDate) >= new Date(filters.dateFrom)
+          filtered = filtered.filter(
+            (property) =>
+              new Date(property.postedDate) >= new Date(filters.dateFrom)
           );
         }
 
         if (filters.dateTo) {
-          filtered = filtered.filter(property =>
-            new Date(property.postedDate) <= new Date(filters.dateTo)
+          filtered = filtered.filter(
+            (property) =>
+              new Date(property.postedDate) <= new Date(filters.dateTo)
           );
         }
 
         if (sort) {
           switch (sort) {
-            case 'price-asc':
+            case "price-asc":
               filtered.sort((a, b) => a.price - b.price);
               break;
-            case 'price-desc':
+            case "price-desc":
               filtered.sort((a, b) => b.price - a.price);
               break;
-            case 'date-desc':
-              filtered.sort((a, b) => new Date(b.postedDate) - new Date(a.postedDate));
+            case "date-desc":
+              filtered.sort(
+                (a, b) => new Date(b.postedDate) - new Date(a.postedDate)
+              );
               break;
-            case 'date-asc':
-              filtered.sort((a, b) => new Date(a.postedDate) - new Date(b.postedDate));
+            case "date-asc":
+              filtered.sort(
+                (a, b) => new Date(a.postedDate) - new Date(b.postedDate)
+              );
               break;
-            case 'name-asc':
-              filtered.sort((a, b) => a.propertyName.localeCompare(b.propertyName));
+            case "name-asc":
+              filtered.sort((a, b) =>
+                a.propertyName.localeCompare(b.propertyName)
+              );
               break;
-            case 'name-desc':
-              filtered.sort((a, b) => b.propertyName.localeCompare(a.propertyName));
+            case "name-desc":
+              filtered.sort((a, b) =>
+                b.propertyName.localeCompare(a.propertyName)
+              );
               break;
             default:
               break;
@@ -136,7 +161,7 @@ const AllProperties = () => {
 
         setFilteredProperties(filtered);
         setTotalPages(Math.ceil(filtered.length / itemsPerPage));
-        setCurrentPage(1); 
+        setCurrentPage(1);
         setFilterLoading(false);
       }, 300);
     };
@@ -146,31 +171,30 @@ const AllProperties = () => {
     }
   }, [searchText, filters, sort, properties, itemsPerPage]);
 
-
   const handleFilterChange = (filterName, value) => {
-    setFilters(prev => ({
+    setFilters((prev) => ({
       ...prev,
-      [filterName]: value
+      [filterName]: value,
     }));
   };
 
   const clearFilters = () => {
     setFilters({
-      category: '',
-      minPrice: '',
-      maxPrice: '',
-      location: '',
-      dateFrom: '',
-      dateTo: '',
-      rating: ''
+      category: "",
+      minPrice: "",
+      maxPrice: "",
+      location: "",
+      dateFrom: "",
+      dateTo: "",
+      rating: "",
     });
-    setSearchText('');
-    setSort('');
+    setSearchText("");
+    setSort("");
   };
 
   const goToPage = (page) => {
     setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const goToPrevPage = () => {
@@ -208,7 +232,7 @@ const AllProperties = () => {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <title>All-Properties</title>
-      
+
       <div className="bg-white dark:bg-gray-800 shadow-lg border-b border-gray-200 dark:border-gray-700 pt-20">
         <div className="w-[98%] md:w-10/12 mx-auto px-3 py-8">
           <div className="text-center mb-8">
@@ -219,7 +243,8 @@ const AllProperties = () => {
               Explore Properties
             </h1>
             <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Find your perfect property from our extensive collection. Use filters to narrow down your search.
+              Find your perfect property from our extensive collection. Use
+              filters to narrow down your search.
             </p>
           </div>
 
@@ -246,14 +271,14 @@ const AllProperties = () => {
                 onClick={() => setShowFilters(!showFilters)}
                 className={`flex items-center gap-2 px-4 py-2 rounded-xl font-medium transition-all ${
                   showFilters
-                    ? 'bg-[#FF5A3C] text-white'
-                    : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                    ? "bg-[#FF5A3C] text-white"
+                    : "bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
                 }`}
               >
                 <FaFilter />
                 Filters
               </button>
-              
+
               <div className="text-gray-600 dark:text-gray-300">
                 {filterLoading ? (
                   <div className="flex items-center gap-2">
@@ -298,7 +323,9 @@ const AllProperties = () => {
                   </label>
                   <select
                     value={filters.category}
-                    onChange={(e) => handleFilterChange('category', e.target.value)}
+                    onChange={(e) =>
+                      handleFilterChange("category", e.target.value)
+                    }
                     className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:border-[#FF5A3C]"
                   >
                     <option value="">All Categories</option>
@@ -317,7 +344,9 @@ const AllProperties = () => {
                   <input
                     type="number"
                     value={filters.minPrice}
-                    onChange={(e) => handleFilterChange('minPrice', e.target.value)}
+                    onChange={(e) =>
+                      handleFilterChange("minPrice", e.target.value)
+                    }
                     placeholder="Min Price"
                     className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:border-[#FF5A3C]"
                   />
@@ -331,7 +360,9 @@ const AllProperties = () => {
                   <input
                     type="number"
                     value={filters.maxPrice}
-                    onChange={(e) => handleFilterChange('maxPrice', e.target.value)}
+                    onChange={(e) =>
+                      handleFilterChange("maxPrice", e.target.value)
+                    }
                     placeholder="Max Price"
                     className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:border-[#FF5A3C]"
                   />
@@ -345,7 +376,9 @@ const AllProperties = () => {
                   <input
                     type="text"
                     value={filters.location}
-                    onChange={(e) => handleFilterChange('location', e.target.value)}
+                    onChange={(e) =>
+                      handleFilterChange("location", e.target.value)
+                    }
                     placeholder="Enter location"
                     className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:border-[#FF5A3C]"
                   />
@@ -359,7 +392,9 @@ const AllProperties = () => {
                   <input
                     type="date"
                     value={filters.dateFrom}
-                    onChange={(e) => handleFilterChange('dateFrom', e.target.value)}
+                    onChange={(e) =>
+                      handleFilterChange("dateFrom", e.target.value)
+                    }
                     className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:border-[#FF5A3C]"
                   />
                 </div>
@@ -372,7 +407,9 @@ const AllProperties = () => {
                   <input
                     type="date"
                     value={filters.dateTo}
-                    onChange={(e) => handleFilterChange('dateTo', e.target.value)}
+                    onChange={(e) =>
+                      handleFilterChange("dateTo", e.target.value)
+                    }
                     className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:border-[#FF5A3C]"
                   />
                 </div>
@@ -395,11 +432,13 @@ const AllProperties = () => {
           <div className="absolute inset-0 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm flex items-center justify-center z-10">
             <div className="text-center">
               <div className="loading-spinner mx-auto mb-4"></div>
-              <p className="text-gray-600 dark:text-gray-300">Filtering properties...</p>
+              <p className="text-gray-600 dark:text-gray-300">
+                Filtering properties...
+              </p>
             </div>
           </div>
         )}
-        
+
         {filteredProperties.length === 0 && !filterLoading ? (
           <div className="text-center py-16">
             <div className="w-[90%] sm:w-[400px] md:w-[600px] lg:w-[800px] flex flex-col justify-center items-center mx-auto">
@@ -408,7 +447,8 @@ const AllProperties = () => {
                 No Properties Found
               </h2>
               <p className="text-gray-600 dark:text-gray-300 mb-6">
-                Try adjusting your search criteria or filters to find more properties.
+                Try adjusting your search criteria or filters to find more
+                properties.
               </p>
               <div className="flex gap-4">
                 <button
@@ -428,6 +468,19 @@ const AllProperties = () => {
           </div>
         ) : (
           <>
+            {/* Properties Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {filteredProperties
+                .slice(
+                  (currentPage - 1) * itemsPerPage,
+                  currentPage * itemsPerPage
+                )
+                .map((property) => (
+                  <AllPropertiesCard key={property._id} property={property} />
+                ))}
+            </div>
+
+            {/* Pagination */}
             {totalPages > 1 && (
               <div className="mt-12 flex flex-col items-center gap-4">
                 <div className="flex items-center gap-2">
@@ -436,8 +489,8 @@ const AllProperties = () => {
                     disabled={currentPage === 1}
                     className={`p-2 rounded-lg ${
                       currentPage === 1
-                        ? 'text-gray-400 cursor-not-allowed'
-                        : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                        ? "text-gray-400 cursor-not-allowed"
+                        : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
                     }`}
                   >
                     <FaChevronLeft />
@@ -449,8 +502,8 @@ const AllProperties = () => {
                       onClick={() => goToPage(page)}
                       className={`px-4 py-2 rounded-lg font-medium ${
                         currentPage === page
-                          ? 'bg-[#FF5A3C] text-white'
-                          : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                          ? "bg-[#FF5A3C] text-white"
+                          : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
                       }`}
                     >
                       {page}
@@ -462,8 +515,8 @@ const AllProperties = () => {
                     disabled={currentPage === totalPages}
                     className={`p-2 rounded-lg ${
                       currentPage === totalPages
-                        ? 'text-gray-400 cursor-not-allowed'
-                        : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                        ? "text-gray-400 cursor-not-allowed"
+                        : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
                     }`}
                   >
                     <FaChevronRight />
@@ -471,7 +524,12 @@ const AllProperties = () => {
                 </div>
 
                 <div className="text-sm text-gray-600 dark:text-gray-300">
-                  Showing {((currentPage - 1) * itemsPerPage) + 1} to {Math.min(currentPage * itemsPerPage, filteredProperties.length)} of {filteredProperties.length} properties
+                  Showing {(currentPage - 1) * itemsPerPage + 1} to{" "}
+                  {Math.min(
+                    currentPage * itemsPerPage,
+                    filteredProperties.length
+                  )}{" "}
+                  of {filteredProperties.length} properties
                 </div>
               </div>
             )}

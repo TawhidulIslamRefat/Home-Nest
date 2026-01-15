@@ -12,9 +12,7 @@ const MyProperties = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(
-      `https://home-nest-server-psi.vercel.app/properties?email=${user?.email}`
-    )
+    fetch(`https://home-server-two.vercel.app/properties?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         setMyProperties(data);
@@ -34,7 +32,7 @@ const MyProperties = () => {
       confirmButtonText: "Yes,Delete !",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://home-nest-server-psi.vercel.app/properties/${id}`, {
+        fetch(`https://home-server-two.vercel.app/properties/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

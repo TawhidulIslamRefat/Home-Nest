@@ -48,7 +48,7 @@ const Overview = () => {
     const fetchProperties = async () => {
       try {
         const res = await axios.get(
-          "https://home-nest-server-psi.vercel.app/properties"
+          "https://home-server-two.vercel.app/properties"
         );
         const data = res.data;
         setProperties(data);

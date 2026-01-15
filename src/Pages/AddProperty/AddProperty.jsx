@@ -2,7 +2,15 @@ import React, { use } from "react";
 import { AuthContext } from "../../Contexts/AuthContext";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
-import { FaHome, FaMapMarkerAlt, FaDollarSign, FaImage, FaUser, FaEnvelope, FaPlus } from "react-icons/fa";
+import {
+  FaHome,
+  FaMapMarkerAlt,
+  FaDollarSign,
+  FaImage,
+  FaUser,
+  FaEnvelope,
+  FaPlus,
+} from "react-icons/fa";
 
 const AddProperty = () => {
   const { user } = use(AuthContext);
@@ -25,7 +33,7 @@ const AddProperty = () => {
       },
       postedDate: new Date().toISOString(),
     };
-    fetch("https://home-nest-server-psi.vercel.app/properties", {
+    fetch("https://home-server-two.vercel.app/properties", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -49,7 +57,7 @@ const AddProperty = () => {
       <div className="w-[97%] lg:w-3xl mx-auto bg-white dark:bg-gray-800 shadow-2xl rounded-2xl p-5 md:p-10 border border-gray-200 dark:border-gray-700 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-32 h-32 bg-linear-to-br from-[#FF5A3C]/10 to-red-500/10 rounded-full -translate-y-16 translate-x-16"></div>
         <div className="absolute bottom-0 left-0 w-24 h-24 bg-linear-to-tr from-orange-400/10 to-[#FF5A3C]/10 rounded-full translate-y-12 -translate-x-12"></div>
-        
+
         <div className="text-center mb-8 relative">
           <div className="inline-flex items-center gap-2 bg-linear-to-r from-[#FF5A3C] to-red-500 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">
             <FaPlus />
@@ -58,7 +66,9 @@ const AddProperty = () => {
           <h1 className="text-xl sm:text-2xl md:text-4xl font-bold bg-linear-to-r from-gray-900 via-[#FF5A3C] to-red-600 bg-clip-text text-transparent dark:from-white dark:via-orange-400 dark:to-red-400">
             Add New <span className="text-[#FF5A3C]">Property</span>
           </h1>
-          <p className="text-gray-600 dark:text-gray-300 mt-2">Fill in the details to list your property</p>
+          <p className="text-gray-600 dark:text-gray-300 mt-2">
+            Fill in the details to list your property
+          </p>
         </div>
 
         <form onSubmit={handleAddProperty} className="w-full space-y-6">

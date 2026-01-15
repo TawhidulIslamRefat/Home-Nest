@@ -9,9 +9,7 @@ const MyRatings = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(
-      `https://home-nest-server-psi.vercel.app/my-ratings?email=${user.email}`
-    )
+    fetch(`https://home-server-two.vercel.app/my-ratings?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setMyRatings(data);
@@ -26,12 +24,18 @@ const MyRatings = () => {
   return (
     <div className=" w-[95%] md:w-10/12 px-0 md:px-3 mx-auto py-10 overflow-x-hidden">
       <title>My-Rating</title>
-      <h1 className="text-xl sm:text-2xl md:text-4xl font-bold text-center mb-10" data-aos="fade-down"
-     data-aos-easing="linear">
+      <h1
+        className="text-xl sm:text-2xl md:text-4xl font-bold text-center mb-10"
+        data-aos="fade-down"
+        data-aos-easing="linear"
+      >
         My <span className="text-[#FF5A3C]">Ratings & Reviews</span>
       </h1>
       {myRatings.length === 0 && (
-        <p className="text-center text-gray-500 text-sm sm:text-lg md:text-xl" data-aos="fade-left">
+        <p
+          className="text-center text-gray-500 text-sm sm:text-lg md:text-xl"
+          data-aos="fade-left"
+        >
           You haven't rated any property yet.
         </p>
       )}
@@ -41,7 +45,8 @@ const MyRatings = () => {
           <div
             key={index}
             className="bg-white shadow-xl border border-gray-100 dark:bg-[#23272B] rounded-xl p-5 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
-           data-aos="fade-up">
+            data-aos="fade-up"
+          >
             <div className="w-full h-44 rounded-lg overflow-hidden mb-4">
               <img
                 src={r.propertyImage}

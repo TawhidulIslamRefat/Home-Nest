@@ -11,7 +11,7 @@ const UpdateProperty = () => {
   const [property, setProperty] = useState(null);
 
   useEffect(() => {
-    fetch(`https://home-nest-server-psi.vercel.app/properties/${id}`)
+    fetch(`https://home-server-two.vercel.app/properties/${id}`)
       .then((res) => res.json())
       .then((data) => setProperty(data));
   }, [id]);
@@ -28,7 +28,7 @@ const UpdateProperty = () => {
       image: e.target.image.value,
     };
 
-    fetch(`https://home-nest-server-psi.vercel.app/properties/${id}`, {
+    fetch(`https://home-server-two.vercel.app/properties/${id}`, {
       method: "PATCH",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(updatedProperty),

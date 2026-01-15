@@ -5,7 +5,7 @@ const LatestProperties = () => {
   const [properties, setProperties] = useState([]);
 
   useEffect(() => {
-    fetch("https://home-nest-server-psi.vercel.app/latest-properties")
+    fetch("https://home-server-two.vercel.app/latest-properties")
       .then((res) => res.json())
       .then((data) => setProperties(data));
   }, []);
